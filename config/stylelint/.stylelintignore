@@ -1,0 +1,7 @@
+/dist/*
+/public/*
+public/*
+/mock/*
+/node_modules/*
+/plop-templates/*
+/types/*
