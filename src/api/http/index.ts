@@ -1,32 +1,19 @@
-import axios from 'axios';
-import type {
-  AxiosError,
-  AxiosInstance,
-  AxiosResponse,
-  InternalAxiosRequestConfig,
-} from 'axios';
+import { baseURL, timeout } from './config';
+import Request from './request';
 
-const service: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_APP_API_BASEURL,
-  timeout: 5000,
+const defaultRequest = new Request({
+  baseURL: baseURL,
+  timeout: timeout,
+  interceptors: {
+    requestSuccess: (config) => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        config.headers.accessToken = token;
+        config.headers['content-type'] = 'application/json;charset=UTF-8';
+      }
+      return config;
+    },
+  },
 });
 
-service.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    return config;
-  },
-  (error: AxiosError) => {
-    return Promise.reject(error);
-  },
-);
-
-service.interceptors.response.use(
-  (res: AxiosResponse) => {
-    return res;
-  },
-  (err) => {
-    return err;
-  },
-);
-
-export default service;
+export default defaultRequest;

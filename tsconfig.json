@@ -1,4 +1,5 @@
 {
+  //编译选项
   "compilerOptions": {
     // 编译出JS的目标ES版本
     "target": "esnext",
@@ -6,7 +7,7 @@
     "module": "esnext",
     // 用于选择模块解析策略，有'node'和'classic'两种类型
     "moduleResolution": "node",
-    // 开启严格模式
+    // 开启ts的严格模式
     "strict": true,
     // 强制代码中使用的模块文件名必须和文件系统中的文件名保持大小写一致
     "forceConsistentCasingInFileNames": true,
@@ -30,7 +31,7 @@
     "lib": ["dom", "esnext"],
     // 不允许变量或函数参数具有隐式any类型
     "noImplicitAny": false,
-    // 启用阻止对下载库的类型检查
+    // 启用阻止对下载库的类型检查，仅仅检测用到的类型
     "skipLibCheck": true,
     // types用来指定需要包含的模块
     "types": ["vite/client", "element-plus/global"],
@@ -64,5 +65,5 @@
     "vite.config.ts"
   ],
   // 指定不需要编译的文件
-  "exclude": ["node_modules", "dist", "**/*.js"]
+  "exclude": ["node_modules", "dist", "**/*.js"],
 }
