@@ -31,6 +31,11 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         imports: ['vue', 'vue-router'],
         resolvers: [ElementPlusResolver()],
         dts: './types/auto-imports.d.ts',
+        eslintrc: {
+          enabled: true, // Default `false`
+          filepath: './config/eslint/.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+          globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+        },
       }),
       Components({
         resolvers: [ElementPlusResolver()],
