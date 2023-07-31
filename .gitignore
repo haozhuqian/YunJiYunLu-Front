@@ -7,7 +7,6 @@ lib
 dist-ssr
 *.local
 
-.vscode/*
 coverage/*
 !.vscode/extensions.json
 .idea

@@ -1,0 +1,27 @@
+{
+  "prettier.configPath": "./config/prettier/prettier.config.js",
+  "editor.tabSize": 2,
+  "prettier.useTabs": true,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "prettier.vueIndentScriptAndStyle": true,
+  "prettier.requireConfig": false,
+  "eslint.enable": true,
+  "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+  },
+  "eslint.rules.customizations": [
+      {
+          "rule": "semi",
+          "severity": "off"
+      },
+      {
+          "rule": "eol-last",
+          "severity": "off"
+      },
+      {
+          "rule": "singleQuote",
+          "severity": "off"
+      }
+  ]
+}
