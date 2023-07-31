@@ -1,5 +1,5 @@
 <style scoped>
-.login {
+.start {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +9,7 @@
 </style>
 
 <template>
-  <div class="login">
+  <div class="start">
     <start-panel></start-panel>
   </div>
 </template>

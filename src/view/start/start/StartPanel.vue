@@ -1,7 +1,7 @@
 <style scoped lang="scss">
 .login-panel {
   display: flex;
-  width: 350px;
+  width: calc(350px + 5%);
   flex-direction: column;
 
   .title {
@@ -16,6 +16,7 @@
 
   .tabs {
     padding: 6px;
+    padding-bottom: 0;
     background-color: rgba($color: #fff, $alpha: 80%);
     border-radius: 6px;
   }
@@ -32,28 +33,76 @@
     <h1 class="title">云冀云麓</h1>
     <div class="tabs">
       <el-tabs v-model="activeTab" class="el-tabs" stretch>
-        <el-tab-pane label="login" name="login"><login></login></el-tab-pane>
-        <el-tab-pane label="register" name="register"
-          ><register></register
-        ></el-tab-pane>
-        <el-tab-pane label="forget" name="forget"
-          ><forget></forget
-        ></el-tab-pane>
+        <el-tab-pane label="login" name="login">
+          <template #label>
+            <div class="label">
+              <el-icon size="16">
+                <InfoFilled />
+              </el-icon>
+              <span>账号登录</span>
+            </div>
+          </template>
+          <login ref="loginRef"></login>
+        </el-tab-pane>
+        <el-tab-pane label="register" name="register">
+          <template #label>
+            <div class="label">
+              <el-icon size="16">
+                <CirclePlusFilled />
+              </el-icon>
+              账号注册
+            </div>
+          </template>
+          <register ref="registerRef"></register>
+        </el-tab-pane>
+        <el-tab-pane label="forget" name="forget">
+          <template #label>
+            <div class="label">
+              <el-icon size="16">
+                <QuestionFilled />
+              </el-icon>
+              忘记密码
+            </div>
+          </template>
+          <forget ref="forgetRef"></forget>
+        </el-tab-pane>
       </el-tabs>
     </div>
     <br />
-    <el-button type="primary" class="login-btn">登录</el-button>
+    <el-button type="primary" class="login-btn" size="large" @click="makeSure"
+      >确认</el-button
+    >
   </div>
 </template>
 
 <script setup lang="ts">
-import forget from './Forget.vue';
 import login from './Login.vue';
 import register from './Register.vue';
+import forget from './Forget.vue';
+
+const loginRef = ref<InstanceType<typeof login>>();
+const registerRef = ref<InstanceType<typeof register>>();
+const forgetRef = ref<InstanceType<typeof forget>>();
+
 enum tabNames {
   login = 'login',
   register = 'register',
   forget = 'forget',
 }
 const activeTab = ref(tabNames.login);
+
+const makeSure = () => {
+  console.log('makeSure');
+  console.log(activeTab.value);
+
+  if (activeTab.value === 'login') {
+    console.log('login');
+
+    loginRef.value?.loginAction();
+  } else if (activeTab.value === 'register') {
+    console.log(registerRef.value);
+  } else {
+    console.log(forgetRef.value);
+  }
+};
 </script>
