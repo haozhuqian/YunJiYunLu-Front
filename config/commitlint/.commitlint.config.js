@@ -19,17 +19,17 @@ module.exports = {
       [
         'feat', //添加新功能
         'fix', //修复原有问题
-        'perf',
-        'style', //修改样式
+        'perf', //性能优化
+        'style', //修改代码格式（不是css）
         'docs', //添加项目文档
         'test', //添加测试
         'refactor', //重构代码
-        'build',
-        'ci',
-        'chore',
-        'revert',
-        'wip',
-        'workflow',
+        'build', //项目构建或者修改项目依赖
+        'ci', //持续集成相关
+        'chore', //杂项，不属于其他类型的提交
+        'revert', //恢复上一次提交
+        'wip', //提交部分代码，但未完成
+        'workflow', //工作流相关修改
         'types', //添加类型
         'release', //发布版本
       ],
