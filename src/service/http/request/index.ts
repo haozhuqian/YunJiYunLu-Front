@@ -75,10 +75,12 @@ export default class Request {
     );
   }
 
-  get<T = any>(config: DefaultAxiosConfig) {
+  get<T = any, P = any>(config: DefaultAxiosConfig, params: P) {
+    config.params = params;
     return this.request<T>({ ...config, method: 'GET' });
   }
-  post<T = any>(config: DefaultAxiosConfig) {
+  post<T = any, D = any>(config: DefaultAxiosConfig, data: D) {
+    config.data = data;
     return this.request<T>({ ...config, method: 'POST' });
   }
 }
