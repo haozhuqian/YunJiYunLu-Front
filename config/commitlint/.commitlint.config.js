@@ -17,21 +17,21 @@ module.exports = {
       2,
       'always',
       [
-        'feat',
-        'fix',
+        'feat', //添加新功能
+        'fix', //修复原有问题
         'perf',
-        'style',
-        'docs',
-        'test',
-        'refactor',
+        'style', //修改样式
+        'docs', //添加项目文档
+        'test', //添加测试
+        'refactor', //重构代码
         'build',
         'ci',
         'chore',
         'revert',
         'wip',
         'workflow',
-        'types',
-        'release',
+        'types', //添加类型
+        'release', //发布版本
       ],
     ],
   },

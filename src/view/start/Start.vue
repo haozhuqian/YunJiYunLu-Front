@@ -1,20 +1,19 @@
 <style scoped>
 .login {
   display: flex;
-  align-items: center;
   justify-content: center;
-
-  height: 100%;
+  align-items: center;
   width: 100%;
+  height: 100%;
 }
 </style>
 
 <template>
   <div class="login">
-    <login-panel></login-panel>
+    <start-panel></start-panel>
   </div>
 </template>
 
 <script lang="ts" setup>
-import loginPanel from "./login/LoginPanel.vue";
+import startPanel from './start/StartPanel.vue';
 </script>
