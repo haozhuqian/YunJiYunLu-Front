@@ -1,0 +1,17 @@
+{
+  "record": {
+    "hosts": [
+      "localhost",
+      "192.168.68.237",
+      "192.168.234.1",
+      "192.168.169.1",
+      "127.0.0.1",
+      "0.0.0.0"
+    ],
+    "hash": {
+      "key": "d16c8ca9c43bb1207985fa04b478f818a97fb0bdb3cf9d08433cf1aff13d2851",
+      "cert": "2e6da085e2532f9c04b5c5b3850041d2e2c607924fc8de3a0f606bd3b58c5d17"
+    }
+  },
+  "configFilePath": "D:\\yun\\goodMoney\\YunJiYunLu-Front\\src\\service\\https\\config.json"
+}

@@ -3,6 +3,7 @@ import type { UserConfig, ConfigEnv } from 'vite';
 import { fileURLToPath } from 'url';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
+import mkcert from 'vite-plugin-mkcert';
 
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
@@ -22,6 +23,10 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     publicDir: fileURLToPath(new URL('./public', import.meta.url)), // 无需处理的静态资源位置
     assetsInclude: fileURLToPath(new URL('./src/assets', import.meta.url)), // 需要处理的静态资源位置
     plugins: [
+      mkcert({
+        source: 'coding',
+        savePath: './src/service/https',
+      }),
       // Vue模板文件编译插件
       vue(),
       // jsx文件编译插件
@@ -48,7 +53,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     // 运行后本地预览的服务器
     server: {
       // 是否开启https
-      https: false,
+      https: true,
       // 指定服务器应该监听哪个 IP 地址。 如果将此设置为 0.0.0.0 或者 true 将监听所有地址，包括局域网和公网地址。
       host: true,
       // 开发环境预览服务器端口
@@ -56,7 +61,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       // 启动后是否自动打开浏览器
       open: true,
       // 是否开启CORS跨域
-      cors: true,
+      cors: false,
       // 代理服务器
       // 帮助我们开发时解决跨域问题
       proxy: {
