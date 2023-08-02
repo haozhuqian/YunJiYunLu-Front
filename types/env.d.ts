@@ -10,4 +10,4 @@ interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
 
-declare model "*.vue"
+declare module '*.vue';
