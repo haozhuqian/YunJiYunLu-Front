@@ -62,14 +62,16 @@ const accountRules = reactive<FormRules>({
 });
 
 const loginAction = () => {
-  ElFormRef.value?.validate((valid, failed) => {
-    if (valid) {
-      console.log('验证成功');
-    } else {
-      console.log(failed);
-      ElMessage.error('账号或密码格式不正确');
-    }
-  });
+  if (ElFormRef.value) {
+    ElFormRef.value.validate((valid, failed) => {
+      if (valid) {
+        console.log('验证成功');
+      } else {
+        console.log(failed);
+        ElMessage.error('账号或密码格式不正确');
+      }
+    });
+  }
 };
 
 defineExpose({

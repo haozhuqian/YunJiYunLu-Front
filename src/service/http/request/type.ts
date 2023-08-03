@@ -4,7 +4,7 @@ import {
   InternalAxiosRequestConfig,
 } from 'axios';
 
-type RFn<T> = (T) => T;
+type RFn<T> = (arg: T) => T;
 interface Interceptors {
   requestSuccess?: RFn<InternalAxiosRequestConfig>;
   requestFailure?: RFn<any>;
@@ -16,6 +16,14 @@ export interface DefaultAxiosConfig extends AxiosRequestConfig {
   interceptors?: Interceptors;
 }
 
+interface RequestInterceptors {
+  requestSuccess?: RFn<AxiosRequestConfig>;
+  responseSuccess?: RFn<AxiosResponse>;
+  responseFailure?: RFn<any>;
+}
+export interface InstanceAxiosConfig extends AxiosRequestConfig {
+  interceptors?: RequestInterceptors;
+}
 type ResolveFn<T> = (value: T | PromiseLike<T>) => void;
 type RejectFn = (reason?: any) => void;
 type ExecutorFn<T> = (resolve: ResolveFn<T>, reject: RejectFn) => void;

@@ -12,7 +12,6 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:vue/vue3-essential',
-    'plugin:prettier/recommended',
     './.eslintrc-auto-import.json',
   ],
   overrides: [
@@ -27,7 +26,6 @@ module.exports = {
     },
   ],
   // 选择使用的解析器
-  parser: 'vue-eslint-parser',
   // 指定解析器选项
   parserOptions: {
     //  启用 ESMAScript 最新版本语法
@@ -42,5 +40,6 @@ module.exports = {
   rules: {
     'vue/multi-word-component-names': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    quotes: ['warn', 'single'],
   },
 };

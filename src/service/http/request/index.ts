@@ -1,6 +1,10 @@
 import axios from 'axios';
 import type { AxiosInstance } from 'axios';
-import { RePromise, type DefaultAxiosConfig } from './type';
+import {
+  RePromise,
+  type DefaultAxiosConfig,
+  type InstanceAxiosConfig,
+} from './type';
 
 //封装第三方库，便于后期维护时切换第三方库，
 export default class Request {
@@ -38,13 +42,13 @@ export default class Request {
     );
   }
   //用泛型T约束返回的data类型
-  request<T = any>(config: DefaultAxiosConfig) {
+  request<T = any>(config: InstanceAxiosConfig) {
     //添加取消请求控制
     const controller = new AbortController();
 
     //单次请求的成功拦截
     if (config.interceptors?.requestSuccess) {
-      config.interceptors?.requestSuccess(config);
+      config.interceptors.requestSuccess(config);
     }
     return new RePromise<T>(
       (resolve, reject) => {
@@ -75,12 +79,20 @@ export default class Request {
     );
   }
 
-  get<T = any, P = any>(config: DefaultAxiosConfig, params: P) {
-    config.params = params;
+  get<P, T = any>(config: InstanceAxiosConfig, params?: P) {
+    config.params = params ? params : config.params;
     return this.request<T>({ ...config, method: 'GET' });
   }
-  post<T = any, D = any>(config: DefaultAxiosConfig, data: D) {
-    config.data = data;
+  post<D, T = any>(config: InstanceAxiosConfig, data?: D) {
+    config.data = data ? data : config.data;
     return this.request<T>({ ...config, method: 'POST' });
+  }
+  put<D, T = any>(config: InstanceAxiosConfig, data?: D) {
+    config.data = data ? data : config.data;
+    return this.request<T>({ ...config, method: 'PUT' });
+  }
+  delete<D, T = any>(config: InstanceAxiosConfig, data?: D) {
+    config.data = data ? data : config.data;
+    return this.request<T>({ ...config, method: 'DELETE' });
   }
 }

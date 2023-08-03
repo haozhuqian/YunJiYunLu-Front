@@ -30,7 +30,7 @@
     // ts中可以使用的库 这里配置为 dom 与 es模块
     "lib": ["dom", "esnext"],
     // 不允许变量或函数参数具有隐式any类型
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     // 启用阻止对下载库的类型检查，仅仅检测用到的类型
     "skipLibCheck": true,
     // types用来指定需要包含的模块
@@ -42,7 +42,7 @@
     // 为导入路径配置别名
     "paths": {
       "@/*": ["src/*"],
-      "#/*": ["types/*"]
+      "#/*": ["types/*"],
     },
     // 生成相关的 '.d.ts' 文件
     "declaration": true,

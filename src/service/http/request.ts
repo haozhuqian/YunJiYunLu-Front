@@ -1,5 +1,5 @@
 import { baseURL, timeout } from './config';
-import Request from './request';
+import Request from './request/index';
 
 const defaultRequest = new Request({
   baseURL: baseURL,

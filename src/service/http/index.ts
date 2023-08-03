@@ -4,13 +4,20 @@ const ms: Record<string, any> = import.meta.glob(['./modules/**/!(*.d).ts'], {
 });
 
 const modules = {};
+interface IModule {
+  [propName: string]: IModule;
+}
 Object.keys(ms).forEach((item) => {
-  const names = item.slice(10, -3).split('/');
-  const moduleName = names.pop() as string;
-  const lowest = names.reduce((upper, name) => {
+  //去掉根目录路径
+  const names = item.split('/').splice(2, Infinity);
+  //取出模块名
+  const moduleName = names.pop()?.slice(0, -3) as string;
+  //迭代地根据文件结构嵌套模块对象
+  const lowest = names.reduce<IModule>((upper, name) => {
     return upper[name] ? upper[name] : (upper[name] = {});
   }, modules);
-  lowest[moduleName] = ms[item].default;
+  //将模块添加到对应文件夹对象下
+  lowest[moduleName] = ms[item];
 });
 console.log(modules);
 
