@@ -33,7 +33,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       vueJsx(),
       //自动引入Element-Plus
       AutoImport({
-        imports: ['vue', 'vue-router'],
+        imports: ['vue', 'vue-router', 'pinia'],
         resolvers: [ElementPlusResolver()],
         dts: './types/auto-imports.d.ts',
         eslintrc: {
