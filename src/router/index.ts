@@ -55,12 +55,10 @@ let routes: Array<RouteRecordRaw> = [];
 const OToR = (
   obj: IModule, //要解析的对象
   routes: Array<RouteRecordRaw>, //要转换的目标数组
-  pathSign = '/', //路径前添加的符号
   name = '', //路由名
 ) => {
-  /**/
   let route: any = {
-    path: pathSign + name,
+    path: name,
     name,
     component: obj[view],
     children: [],
@@ -76,13 +74,16 @@ const OToR = (
   };
   routes.push(route);
   Object.keys(obj).forEach((item) => {
-    OToR(obj[item], route.children, '/', item);
+    OToR(obj[item], route.children, item);
   });
   return route;
 };
 OToR(modules, routes);
-(routes = routes[0].children as unknown as RouteRecordRaw[]),
-  console.log(routes);
+routes = routes[0].children as unknown as RouteRecordRaw[];
+routes.forEach((item) => {
+  item.path = '/' + item.path;
+});
+console.log(routes);
 
 const router = createRouter({
   history: createWebHashHistory(),

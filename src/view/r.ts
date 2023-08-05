@@ -6,8 +6,8 @@ export default {
   },
   routes: [
     {
-      path: '/',
-      redirect: '/start',
+      path: '',
+      redirect: 'start',
     },
   ],
 } as RouterInfo;

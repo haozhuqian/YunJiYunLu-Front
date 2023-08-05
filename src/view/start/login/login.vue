@@ -63,7 +63,7 @@ const accountRules = reactive<FormRules>({
 
 const loginAction = () => {
   if (ElFormRef.value) {
-    ElFormRef.value.validate((valid, failed) => {
+    ElFormRef.value.validate((valid: boolean, failed: any) => {
       if (valid) {
         console.log('验证成功');
       } else {
