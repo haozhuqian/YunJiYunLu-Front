@@ -25,7 +25,7 @@ Object.keys(ms).forEach((item) => {
   //去掉根目录路径，获取路径数组
   const names = item.split('/').splice(2, Infinity);
   //取出组件名
-  const componentName = (names.pop() as string).split('.')[0];
+  const componentName = (names.pop() as string).split('.')[0].toLowerCase();
   let component;
   //如果仍存在相邻且重复的两项说明,这个文件是页面的子组件而非页面组件本身
   if (names.some((item, index) => item === names[index + 1])) return;
@@ -50,14 +50,14 @@ Object.keys(ms).forEach((item) => {
   lowest[component] = ms[item].default;
   return;
 });
-
+console.log(modules);
 let routes: Array<RouteRecordRaw> = [];
 const OToR = (
   obj: IModule, //要解析的对象
   routes: Array<RouteRecordRaw>, //要转换的目标数组
   name = '', //路由名
 ) => {
-  let route: any = {
+  let route: RouteRecordRaw = {
     path: name,
     name,
     component: obj[view],
@@ -65,18 +65,17 @@ const OToR = (
   };
   if (obj[rInf]) {
     obj[rInf].routes?.forEach((rout: RouteRecordRaw) => {
-      route.children.push(rout);
+      route.children?.push(rout);
     });
   }
   route = {
     ...route,
-    ...(obj[rInf] as RouteRecordRaw),
+    ...(obj[rInf] as RouteRecordRaw[]),
   };
   routes.push(route);
   Object.keys(obj).forEach((item) => {
-    OToR(obj[item], route.children, item);
+    OToR(obj[item], route.children as RouteRecordRaw[], item);
   });
-  return route;
 };
 OToR(modules, routes);
 routes = routes[0].children as unknown as RouteRecordRaw[];
