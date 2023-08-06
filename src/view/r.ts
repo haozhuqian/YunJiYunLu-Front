@@ -4,9 +4,11 @@ export default {
   meta: {
     role: ['common', 'admin'],
   },
-  routes: [
+  path: '/',
+  children: [
     {
       path: '',
+      name: 'index',
       redirect: 'start',
     },
   ],

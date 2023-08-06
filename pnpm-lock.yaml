@@ -23,6 +23,9 @@ dependencies:
   pinia-plugin-persistedstate:
     specifier: ^3.1.0
     version: registry.npmmirror.com/pinia-plugin-persistedstate@3.1.0(pinia@2.1.4)
+  qrcode-vue3:
+    specifier: ^1.6.8
+    version: registry.npmmirror.com/qrcode-vue3@1.6.8
   vitepress:
     specifier: 1.0.0-beta.6
     version: registry.npmmirror.com/vitepress@1.0.0-beta.6(@algolia/client-search@4.19.1)(@types/node@20.4.2)(axios@1.4.0)(nprogress@0.2.0)(sass@1.64.0)(search-insights@2.7.0)
@@ -35,6 +38,9 @@ dependencies:
   vue-router:
     specifier: ^4.2.4
     version: registry.npmmirror.com/vue-router@4.2.4(vue@3.3.4)
+  vue3-qr-reader:
+    specifier: ^1.0.0
+    version: registry.npmmirror.com/vue3-qr-reader@1.0.0
 
 devDependencies:
   '@commitlint/cli':
@@ -5010,6 +5016,12 @@ packages:
     engines: {'0': node >= 0.2.0}
     dev: true
 
+  registry.npmmirror.com/jsqr@1.4.0:
+    resolution: {integrity: sha512-dxLob7q65Xg2DvstYkRpkYtmKm2sPJ9oFhrhmudT1dZvNFFTlroai3AWSpLey/w5vMcLBXRgOJsbXpdN9HzU/A==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jsqr/-/jsqr-1.4.0.tgz}
+    name: jsqr
+    version: 1.4.0
+    dev: false
+
   registry.npmmirror.com/kind-of@6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/kind-of/-/kind-of-6.0.3.tgz}
     name: kind-of
@@ -6037,6 +6049,20 @@ packages:
     version: 1.5.1
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     dev: true
+
+  registry.npmmirror.com/qrcode-generator@1.4.4:
+    resolution: {integrity: sha512-HM7yY8O2ilqhmULxGMpcHSF1EhJJ9yBj8gvDEuZ6M+KGJ0YY2hKpnXvRD+hZPLrDVck3ExIGhmPtSdcjC+guuw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/qrcode-generator/-/qrcode-generator-1.4.4.tgz}
+    name: qrcode-generator
+    version: 1.4.4
+    dev: false
+
+  registry.npmmirror.com/qrcode-vue3@1.6.8:
+    resolution: {integrity: sha512-LtMnwKWi58ZqHbXBcsTF/VxDYhI6RrBIrDQw8fbDVlO8p5tJBZa7TaIaVYLY937vKO2WCEBmOKksGlpm5ccEIg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/qrcode-vue3/-/qrcode-vue3-1.6.8.tgz}
+    name: qrcode-vue3
+    version: 1.6.8
+    dependencies:
+      qrcode-generator: registry.npmmirror.com/qrcode-generator@1.4.4
+    dev: false
 
   registry.npmmirror.com/queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/queue-microtask/-/queue-microtask-1.2.3.tgz}
@@ -7632,6 +7658,14 @@ packages:
       semver: registry.npmmirror.com/semver@7.5.4
       typescript: registry.npmmirror.com/typescript@5.1.6
     dev: true
+
+  registry.npmmirror.com/vue3-qr-reader@1.0.0:
+    resolution: {integrity: sha512-BRgmR+lDPkNwgL6skSaEOGFg4Aup/FLYnOGFCV0knYHxfbAnliJN/+wr//iqD2G3EOBrXw4TPGNfj/5Wxl7wwQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue3-qr-reader/-/vue3-qr-reader-1.0.0.tgz}
+    name: vue3-qr-reader
+    version: 1.0.0
+    dependencies:
+      jsqr: registry.npmmirror.com/jsqr@1.4.0
+    dev: false
 
   registry.npmmirror.com/vue@3.3.4:
     resolution: {integrity: sha512-VTyEYn3yvIeY1Py0WaYGZsXnz3y5UnGi62GjVEqvEGPl6nxbOrCXbVOTQWBEJUqAyTUk2uJ5JLVnYJ6ZzGbrSw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue/-/vue-3.3.4.tgz}

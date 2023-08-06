@@ -11,5 +11,19 @@
     <router-view></router-view>
   </div>
 </template>
+<!--
+<route lang="ts">
+{
+  meta: {
+    role: ['common', 'admin'],
+  },
+  routes: [
+    {
+      path: '',
+      redirect: 'start',
+    },
+  ],
+}
+</route> -->
 
 <script setup></script>
