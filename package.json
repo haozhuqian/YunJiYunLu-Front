@@ -16,15 +16,15 @@
     "@element-plus/icons-vue": "^2.1.0",
     "axios": "^1.4.0",
     "element-plus": "^2.3.8",
+    "jsqr": "^1.4.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.4",
     "pinia-plugin-persistedstate": "^3.1.0",
-    "qrcode-vue3": "^1.6.8",
+    "qrcode.vue": "^3.4.1",
     "vitepress": "1.0.0-beta.6",
     "vue": "^3.3.4",
     "vue-eslint-parser": "^9.3.1",
-    "vue-router": "^4.2.4",
-    "vue3-qr-reader": "^1.0.0"
+    "vue-router": "^4.2.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",

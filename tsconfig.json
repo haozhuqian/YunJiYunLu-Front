@@ -42,12 +42,12 @@
     // 为导入路径配置别名
     "paths": {
       "@/*": ["src/*"],
-      "#/*": ["types/*"],
+      "#/*": ["src/types/*"],
     },
     // 生成相关的 '.d.ts' 文件
     "declaration": true,
     // '.d.ts' 文件输出目录
-    "declarationDir": "types",
+    "declarationDir": "src/types",
     // 配置虚拟目录
     "rootDirs": []
   },
@@ -57,8 +57,8 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "types/**/*.d.ts",
-    "types/**/*.ts",
+    "src/types/**/*.d.ts",
+    "src/types/**/*.ts",
     "build/**/*.ts",
     "build/**/*.d.ts",
     "mock/**/*.ts",

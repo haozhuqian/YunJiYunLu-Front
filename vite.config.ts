@@ -37,7 +37,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       AutoImport({
         imports: ['vue', 'vue-router', 'pinia'],
         resolvers: [ElementPlusResolver()],
-        dts: './types/auto-imports.d.ts',
+        dts: './src/types/auto-imports.d.ts',
         eslintrc: {
           enabled: true, // Default `false`
           filepath: './config/eslint/.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
@@ -46,7 +46,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       }),
       Components({
         resolvers: [ElementPlusResolver()],
-        dts: './types/components.d.ts',
+        dts: './src/types/components.d.ts',
       }),
       ElementPlus({
         // options
