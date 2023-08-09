@@ -1,8 +1,6 @@
 import { RouteComponent, RouteRecordRaw } from 'vue-router';
 
-export type RouterInfo = Partial<RouteRecordRaw> & {
-  routes?: RouteRecordRaw[];
-};
+export type RouterInfo = Partial<RouteRecordRaw>;
 
 export const view = Symbol('view');
 export const rInf = Symbol('rInf');

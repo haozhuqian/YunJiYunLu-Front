@@ -1,32 +1,43 @@
 import type { RouteRecordRaw } from 'vue-router';
 import { view, rInf, IModule } from './type';
 
-const ms: Record<string, any> = import.meta.glob(['../view/**/*.{vue,ts}'], {
+const rs: Record<string, any> = import.meta.glob(['../view/**/r.ts'], {
   eager: true,
 });
+const ms: Record<string, any> = import.meta.glob(['../view/**/*.vue']);
 const modules: IModule = {}; //模块对象
 
-//将文件结构整理成对象，去除不需要的文件模块
+//将路由组件文件结构整理成对象，去除不需要的文件模块
 Object.keys(ms).forEach((item) => {
   const names = item.split('/').splice(1, Infinity);
   const componentName = (names.pop() as string).split('.')[0].toLowerCase();
-  let MoudelType: typeof view | typeof rInf;
-  if (names.some((item, index) => item === names[index + 1])) return;
+  if (names.some((item, index, arr) => item === arr[index + 1])) return;
   const routerName = names.slice(-1)[0] as string;
-  if (componentName === routerName) {
-    MoudelType = view;
-  } else if (componentName === 'r') {
-    MoudelType = rInf;
-  } else {
+  if (componentName !== routerName) {
     return;
   }
   const lowest = names.reduce<IModule>((upper, name) => {
     return upper[name] ? upper[name] : (upper[name] = {});
   }, modules);
-  lowest[MoudelType] = ms[item].default;
+  lowest[view] = ms[item];
   return;
 });
-
+//将路由配置文件结构整理成对象，去除不需要的文件模块
+Object.keys(rs).forEach((item) => {
+  const names = item.split('/').splice(1, Infinity);
+  names.pop();
+  let last = modules;
+  if (
+    names.every((item) => {
+      last = last[item];
+      return last;
+    })
+  ) {
+    last[rInf] = rs[item].default;
+  }
+  return;
+});
+// 生成路由数组
 let routes: Array<RouteRecordRaw> = [];
 const OToR = (obj: IModule, routes: Array<RouteRecordRaw>, name = '') => {
   let route: RouteRecordRaw = {
