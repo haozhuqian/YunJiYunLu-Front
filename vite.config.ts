@@ -9,7 +9,6 @@ import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import ElementPlus from 'unplugin-element-plus/vite';
-import autoRoute from './src/router/routePlugin';
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   // 获取当前工作目录
@@ -24,7 +23,6 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     publicDir: fileURLToPath(new URL('./public', import.meta.url)), // 无需处理的静态资源位置
     assetsInclude: fileURLToPath(new URL('./src/assets', import.meta.url)), // 需要处理的静态资源位置
     plugins: [
-      autoRoute(),
       mkcert({
         source: 'coding',
         savePath: './src/service/https',
@@ -61,7 +59,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       // 开发环境预览服务器端口
       port: 3000,
       // 启动后是否自动打开浏览器
-      open: true,
+      open: false,
       // 是否开启CORS跨域
       cors: false,
       // 代理服务器

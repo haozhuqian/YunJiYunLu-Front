@@ -1,8 +1,9 @@
 import type { RouterInfo } from '@/router/type';
+import { role } from '@/router/type';
 
 export default {
   meta: {
-    role: ['common', 'admin'],
+    role: role.visitor,
   },
   path: '/',
   children: [

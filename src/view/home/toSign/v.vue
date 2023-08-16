@@ -4,11 +4,9 @@
   <div class="sign">
     sign
     <render></render>
-    <identify></identify>
   </div>
 </template>
 
 <script lang="ts" setup>
-import render from './sign/render.vue';
-import identify from './sign/identify.vue';
+import render from './_com/render.vue';
 </script>

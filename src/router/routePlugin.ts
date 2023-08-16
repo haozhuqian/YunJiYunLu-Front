@@ -2,7 +2,7 @@ import { type PluginOption } from 'vite';
 import { RModule, routeValue } from './type';
 import { RouteRecordRaw } from 'vue-router';
 
-//试图写一个插件导入并自动生成路由，暂时放弃 2023.8.6
+//试图写一个插件导入并自动生成路由，暂时放弃(由于生成的模块似乎没有合适的导出位置？) 2023.8.6 有兴趣可以自己尝试一下 (:
 
 // 将字符串转换为对象
 function parseStringToObject(str: string) {

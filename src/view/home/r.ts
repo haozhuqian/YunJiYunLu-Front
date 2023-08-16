@@ -3,7 +3,7 @@ import { role } from '@/router/type';
 
 export default {
   meta: {
-    role: role.visitor,
+    role: ~role.visitor,
   },
   props: true,
 } as RouterInfo;

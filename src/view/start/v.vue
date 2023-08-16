@@ -15,5 +15,5 @@
 </template>
 
 <script lang="ts" setup>
-import startPanel from './start/StartPanel.vue';
+import startPanel from './_com/StartPanel.vue';
 </script>

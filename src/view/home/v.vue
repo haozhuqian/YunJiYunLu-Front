@@ -19,12 +19,14 @@
       background-color: transparent;
       border: 0;
       border-right: 2px black solid;
+      border-left: 2px black solid;
     }
 
     img {
       padding: 4px;
       width: 40px;
       height: 40px;
+      border-right: 2px black solid;
       border-left: 2px black solid;
     }
   }
@@ -77,14 +79,18 @@
 <template>
   <div class="home">
     <div class="head">
-      <button v-show="isNarrow" @click="openMenu">菜单</button>
+      <button v-if="isNarrow" @click="openMenu">菜单</button>
       <img class="logo" :src="logo" alt="云顶书院" />
+      <button @click="goOut">退出</button>
     </div>
     <div class="main" :class="{ narrowMain: isNarrow }">
       <nav :class="{ narrowNav: isNarrow, openNav: isOpen && isNarrow }">
-        <router-link :to="{ name: 'sign' }">打卡</router-link>
-        <router-link :to="{ name: 'info' }">个人信息</router-link>
-        <router-link :to="{ name: 'calendar' }">日程</router-link>
+        <router-link
+          :to="{ name: nav.path }"
+          v-for="nav in navs"
+          :key="nav.path"
+          >{{ nav.name }}</router-link
+        >
       </nav>
       <div class="content"><router-view></router-view></div>
     </div>
@@ -93,7 +99,20 @@
 
 <script lang="ts" setup>
 import logo from '@/assets/imgs/logo/云顶-黑.png';
+import { role } from '@/router/type';
+import { useUserStore } from '@/store/user';
 import debounce from '@/utils/debounce';
+import routes from '@/router/autoImport';
+import { RouteRecordRaw } from 'vue-router';
+
+const home = (routes[0].children as RouteRecordRaw[]).find(
+  (item) => item.name === 'home',
+)?.children as RouteRecordRaw[];
+
+const user = useUserStore();
+const navs = home
+  .filter((item) => user.accessable(item.meta?.role as role))
+  .map((item) => ({ path: item.name, name: item.meta?.intro }));
 
 const isNarrow = ref(false);
 const isOpen = ref(false);
@@ -109,5 +128,11 @@ onUnmounted(() => {
 
 const openMenu = () => {
   isOpen.value = !isOpen.value;
+};
+const router = useRouter();
+const goOut = () => {
+  const user = useUserStore();
+  user.role = role.visitor;
+  router.push({ name: 'start' });
 };
 </script>

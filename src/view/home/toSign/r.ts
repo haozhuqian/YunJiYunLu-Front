@@ -3,7 +3,8 @@ import { role } from '@/router/type';
 
 export default {
   meta: {
-    role: role.visitor,
+    role: role.Dapartment | role.Total,
+    intro: '被打卡',
   },
   props: true,
 } as RouterInfo;

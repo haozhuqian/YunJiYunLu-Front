@@ -68,9 +68,47 @@
         </el-tab-pane>
       </el-tabs>
     </div>
-    <br />
-    <el-button type="primary" class="login-btn" size="large" @click="makeSure"
+    <br /><el-button
+      type="primary"
+      class="login-btn"
+      size="large"
+      @click="makeSure"
       >确认</el-button
+    >
+    <br /><el-button
+      type="primary"
+      class="login-btn"
+      size="large"
+      @click="goHome(role.visitor)"
+      >游客</el-button
+    >
+    <br /><el-button
+      type="primary"
+      class="login-btn"
+      size="large"
+      @click="goHome(role.Normal)"
+      >学员</el-button
+    >
+    <br /><el-button
+      type="primary"
+      class="login-btn"
+      size="large"
+      @click="goHome(role.Admin)"
+      >管理</el-button
+    >
+    <br /><el-button
+      type="primary"
+      class="login-btn"
+      size="large"
+      @click="goHome(role.Dapartment)"
+      >部门</el-button
+    >
+    <br /><el-button
+      type="primary"
+      class="login-btn"
+      size="large"
+      @click="goHome(role.Total)"
+      >总号</el-button
     >
   </div>
 </template>
@@ -79,6 +117,8 @@
 import login from './Login.vue';
 import register from './Register.vue';
 import forget from './Forget.vue';
+import { role } from '@/router/type';
+import { useUserStore } from '@/store/user';
 
 const loginRef = ref<InstanceType<typeof login>>();
 const registerRef = ref<InstanceType<typeof register>>();
@@ -96,13 +136,17 @@ const makeSure = () => {
   console.log(activeTab.value);
 
   if (activeTab.value === 'login') {
-    console.log('login');
-
     loginRef.value?.loginAction();
   } else if (activeTab.value === 'register') {
     console.log(registerRef.value);
   } else {
     console.log(forgetRef.value);
   }
+};
+const router = useRouter();
+const goHome = (role: role) => {
+  const user = useUserStore();
+  user.role = role;
+  router.push({ name: 'home' });
 };
 </script>

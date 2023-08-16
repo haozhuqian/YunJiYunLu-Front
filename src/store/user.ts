@@ -1,17 +1,20 @@
 import { defineStore } from 'pinia';
+import { role } from '@/router/type';
 
-export const useStore = defineStore('user', {
-  state: () => {
-    return {
-      id: '',
-      token: '',
-      permission: '',
-      info: {
-        name: '',
-      },
-    };
+export const useUserStore = defineStore('user', {
+  state: () => ({
+    id: '',
+    token: '',
+    role: role.visitor,
+    info: {
+      name: '',
+    },
+  }),
+  actions: {
+    accessable(role: role): boolean {
+      return Boolean(role & this.role);
+    },
   },
-  actions: {},
   getters: {},
   persist: true,
 });
