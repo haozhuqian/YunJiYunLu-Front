@@ -55,6 +55,14 @@
         border-bottom: 2px white solid;
         line-height: 32px;
       }
+
+      a:hover {
+        background: #115ba0;
+      }
+
+      .selected {
+        background: #4c99d8;
+      }
     }
 
     .narrowNav {
@@ -89,6 +97,7 @@
           :to="{ name: nav.path }"
           v-for="nav in navs"
           :key="nav.path"
+          active-class="selected"
           >{{ nav.name }}</router-link
         >
       </nav>
@@ -108,7 +117,6 @@ import { RouteRecordRaw } from 'vue-router';
 const home = (routes[0].children as RouteRecordRaw[]).find(
   (item) => item.name === 'home',
 )?.children as RouteRecordRaw[];
-
 const user = useUserStore();
 const navs = home
   .filter((item) => user.accessable(item.meta?.role as role))
@@ -125,14 +133,14 @@ addEventListener('resize', fitWidth);
 onUnmounted(() => {
   window.removeEventListener('resize', fitWidth);
 });
-
 const openMenu = () => {
   isOpen.value = !isOpen.value;
 };
+
 const router = useRouter();
 const goOut = () => {
   const user = useUserStore();
-  user.role = role.visitor;
+  user.$reset();
   router.push({ name: 'start' });
 };
 </script>

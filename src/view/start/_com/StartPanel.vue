@@ -147,6 +147,7 @@ const router = useRouter();
 const goHome = (role: role) => {
   const user = useUserStore();
   user.role = role;
+  user.token = 'token';
   router.push({ name: 'home' });
 };
 </script>

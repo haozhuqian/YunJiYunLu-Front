@@ -16,6 +16,10 @@ router.beforeEach(async (to) => {
   const user = useUserStore();
   if (!user.accessable(to.meta.role)) {
     ElMessage.error('您没有权限访问');
+    if (user.token) {
+      console.log(Boolean(user.token));
+      return { name: 'home' };
+    }
     return false;
   }
   NProgress.start();
