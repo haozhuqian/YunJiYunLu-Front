@@ -1,4 +1,4 @@
-import { RouterInfo } from '@/router/type';
+import { RouterInfo } from '@/types/route';
 
 export default {
   path: ':pathMatch(.*)',

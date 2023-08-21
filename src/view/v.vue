@@ -1,15 +1,20 @@
 <style scoped>
-.app {
-  width: 100vw;
-  height: 100vh;
-  background-color: #a3dcff;
+.root {
+  background-color: var(--color-primary);
 }
 </style>
-
 <template>
-  <div class="app">
-    <router-view></router-view>
-  </div>
+  <router-view class="root"></router-view>
 </template>
 
-<script setup></script>
+<script lang="ts" setup>
+import { useSetStore } from '@/store/setting';
+import { theme } from '@/types/setting';
+
+const setting = useSetStore();
+if (setting.theme === theme.day) {
+  document.body.className = 'day';
+} else {
+  document.body.className = 'night';
+}
+</script>

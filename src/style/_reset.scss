@@ -53,6 +53,7 @@ html {
 *::before,
 *::after {
   box-sizing: inherit;
+  color: var(--color-least, #000);
 }
 
 img,

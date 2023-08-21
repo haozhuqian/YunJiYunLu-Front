@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { role } from '@/router/type';
+import { role } from '@/types/route';
 
 export const useUserStore = defineStore('user', {
   state: () => ({

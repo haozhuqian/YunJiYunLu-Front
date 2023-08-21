@@ -117,7 +117,7 @@
 import login from './Login.vue';
 import register from './Register.vue';
 import forget from './Forget.vue';
-import { role } from '@/router/type';
+import { role } from '@/types/route';
 import { useUserStore } from '@/store/user';
 
 const loginRef = ref<InstanceType<typeof login>>();
@@ -144,10 +144,12 @@ const makeSure = () => {
   }
 };
 const router = useRouter();
-const goHome = (role: role) => {
+const goHome = (goRole: role) => {
   const user = useUserStore();
-  user.role = role;
-  user.token = 'token';
+  user.role = goRole;
+  if (goRole !== role.visitor) {
+    user.token = 'token';
+  }
   router.push({ name: 'home' });
 };
 </script>

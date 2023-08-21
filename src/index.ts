@@ -1,8 +1,8 @@
 import { createApp } from 'vue';
-import App from './view/v.vue';
+import App from './index.vue';
 import pinia from './store';
 import router from './router';
-import './style/_reset.scss';
+import './style/index';
 import Icons from './global/icons';
 
 const app = createApp(App);

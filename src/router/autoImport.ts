@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router';
-import { view, rInf, IModule, role } from './type';
+import { view, rInf, IModule, role } from '@/types/route';
 //完整加载路由配置对象（就是eager选项为true）
 const rs: Record<string, any> = import.meta.glob(['../view/**/r.ts'], {
   eager: true,

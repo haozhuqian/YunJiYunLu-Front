@@ -1,5 +1,5 @@
-import type { RouterInfo } from '@/router/type';
-import { role } from '@/router/type';
+import type { RouterInfo } from '@/types/route';
+import { role } from '@/types/route';
 
 export default {
   meta: {
