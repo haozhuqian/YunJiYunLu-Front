@@ -3,6 +3,7 @@
   background-color: var(--color-primary);
 }
 </style>
+
 <template>
   <router-view class="root"></router-view>
 </template>

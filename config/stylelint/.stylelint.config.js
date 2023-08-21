@@ -43,6 +43,12 @@ module.exports = {
         ignorePseudoClasses: ['global'],
       },
     ],
+    'at-rule-no-unknown': [
+      true,
+      {
+        ignoreAtRules: ['mixin', 'include', 'extend'],
+      },
+    ],
     // 允许 Vue 的 v-deep
     'selector-pseudo-element-no-unknown': [
       true,

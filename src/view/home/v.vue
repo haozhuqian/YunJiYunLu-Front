@@ -43,10 +43,11 @@
       max-width: 200px;
       height: 100%;
       background-color: var(--color-showy);
-      transition: width 0.5s ease-in-out;
+      transition: left 0.5s ease-in-out;
       flex-direction: column;
 
       a {
+        overflow: hidden;
         height: 32px;
         font-size: 16px;
         text-align: center;
@@ -67,11 +68,13 @@
 
     .narrowNav {
       position: absolute;
-      width: 0;
+      left: -200px;
+      z-index: 100;
+      width: 200px;
     }
 
     .openNav {
-      width: 200px;
+      left: 0;
     }
 
     .content {
