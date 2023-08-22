@@ -43,10 +43,11 @@ module.exports = {
         ignorePseudoClasses: ['global'],
       },
     ],
+    //运行scss的混合宏与继承语法
     'at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: ['mixin', 'include', 'extend'],
+        ignoreAtRules: ['mixin', 'include', 'extend', 'import'],
       },
     ],
     // 允许 Vue 的 v-deep
@@ -58,6 +59,7 @@ module.exports = {
     ],
     // 允许对应内核前缀
     'property-no-vendor-prefix': null,
+    'import-notation': 'string',
     // 允许空源
     'no-empty-source': null,
     // 指定样式的排序 修复后会帮我们自动整理CSS样式的顺序

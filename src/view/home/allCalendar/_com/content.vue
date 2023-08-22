@@ -1,5 +1,5 @@
 <style scoped lang="scss">
-@import url('@/style/tool');
+@import '@/style/tool';
 
 .content {
   width: 100%;
@@ -32,13 +32,17 @@
 </style>
 
 <template>
-  <div class="content" :class="{ now: isNow, [props.state]: true }">
+  <div
+    class="content"
+    :class="{ now: isNow, [states[props.state]]: true }"
+    :type="props.state"
+  >
     {{ props.name ?? names[props.state] }}
   </div>
 </template>
 
 <script lang="ts" setup>
-import { states } from './type';
+import { states } from '../_type/states';
 
 const props = withDefaults(
   defineProps<{
@@ -52,11 +56,6 @@ const props = withDefaults(
   },
 );
 
-const names = {
-  leave: '请假',
-  nothing: '',
-  study: '研学',
-  meeting: '会议',
-};
+const names = ['请假', '', '研学', '会议'];
 </script>
-./type.js
+./type.js ../_type/type ../_type/states

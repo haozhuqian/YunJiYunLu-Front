@@ -52,8 +52,12 @@ html {
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
   color: var(--color-least, #000);
+  box-sizing: inherit;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 img,
