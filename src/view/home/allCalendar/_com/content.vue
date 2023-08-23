@@ -4,12 +4,19 @@
 .content {
   width: 100%;
   height: 100%;
+  font-size: 12px;
+  color: var(--color-least);
+  background-color: var(--color-primary);
+  border: 4px solid var(--color-main);
+  border-radius: 10px;
+  flex: 1 1 0px;
+  font-weight: 900;
 
   @include flex(row, center, center);
 }
 
 .now {
-  border: 2px solid var(--color-least);
+  border: 4px solid var(--color-primary);
 }
 
 .nothing {
@@ -18,11 +25,6 @@
 
 .study {
   color: var(--color-main);
-  background-color: var(--color-least);
-}
-
-.meeting {
-  color: var(--color-primary);
   background-color: var(--color-showy);
 }
 
@@ -34,28 +36,28 @@
 <template>
   <div
     class="content"
-    :class="{ now: isNow, [states[props.state]]: true }"
+    :class="{ now: time === times.now, [states[props.state] ?? '']: true }"
     :type="props.state"
+    :time="props.time"
   >
-    {{ props.name ?? names[props.state] }}
+    {{ props.name || (props.state === -1 ? '' : names[props.state]) }}
   </div>
 </template>
 
 <script lang="ts" setup>
-import { states } from '../_type/states';
+import { states, times } from '../_type/states';
 
 const props = withDefaults(
   defineProps<{
-    isNow?: boolean;
-    state?: states;
+    time?: times;
+    state?: states | -1;
     name?: string;
   }>(),
   {
-    isNow: false,
-    state: states.nothing,
+    time: times.future,
+    state: -1,
   },
 );
 
-const names = ['请假', '', '研学', '会议'];
+const names = ['请假', '', '研学'];
 </script>
-./type.js ../_type/type ../_type/states
