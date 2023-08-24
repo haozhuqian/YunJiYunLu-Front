@@ -16,3 +16,7 @@ coverage/*
 *.njsproj
 *.sln
 *.sw?
+
+src/service/https/cert.pem
+src/service/https/dev.pem
+src/service/https/config.json

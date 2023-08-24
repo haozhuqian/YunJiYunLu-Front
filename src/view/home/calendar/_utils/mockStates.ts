@@ -17,14 +17,16 @@ export default function <R extends object>(conf: {
   };
 }) {
   const { name, state, time } = conf;
+  const width = name.row.length;
+  const heigh = name.column.length + 1;
   //一个表格雏形
   const table: R[][] = [];
   //随机获取一个状态值
   const randomEnum = getREnum(state.enumObj);
   //根据第一行与第一列的长度填充状态与坐标
-  for (let i = 0; i < name.row.length; i++) {
+  for (let i = 0; i < width; i++) {
     table[i] = [];
-    for (let j = 0; j < name.column.length + 1; j++) {
+    for (let j = 0; j < heigh; j++) {
       table[i][j] = { state: randomEnum(), x: i, y: j } as unknown as R;
     }
   }
@@ -40,25 +42,26 @@ export default function <R extends object>(conf: {
   //获取当前时间
   const now = new Date();
   const day = ((now.getDay() + 6) % 7) + 1;
-  //将小时转换为对应的日程时间段
-  const hour = Math.floor(now.getHours() / 2 - 4);
-  //如果此时在工作时间段内，则将对应时间的状态改为now
-  if (hour >= 8 && hour < 22) {
-    table[day][hour][time.key] = time.now as R[keyof R];
-  }
-  //将过去的时间状态改为old
-  for (let i = 1; i < name.row.length; i++) {
+  //将过去日期的时间状态改为old
+  for (let i = 1; i < width; i++) {
     if (i < day) {
-      for (let j = 1; j < name.column.length + 1; j++) {
+      for (let j = 1; j < heigh; j++) {
         table[i][j][time.key] = time.old as R[keyof R];
       }
-    } else if (i === day) {
-      for (let j = 1; j < hour; j++) {
-        table[i][j][time.key] = time.old as R[keyof R];
-      }
-      //将现在经历的变为now
-      table[i][hour][time.key] = time.now as R[keyof R];
     }
+  }
+  //将小时转换为对应的日程时间段
+  let hour = Math.floor(now.getHours() / 2 - 3);
+  //如果此时在工作时间段内，则将对应时间的状态改为now
+  if (hour < 0 || hour === 3 || hour >= heigh) {
+    return reactive(table);
+  } else if (hour > 3 && hour < heigh) {
+    hour--;
+  }
+  table[day][hour][time.key] = time.now as R[keyof R];
+  //将过去的时间状态改为old
+  for (let j = 1; j < hour; j++) {
+    table[day][j][time.key] = time.old as R[keyof R];
   }
   return reactive(table);
 }
