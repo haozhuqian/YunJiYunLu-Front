@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ChangeTheme: typeof import('./../components/changeTheme.vue')['default'];
     ElButton: typeof import('element-plus/es')['ElButton'];
     ElForm: typeof import('element-plus/es')['ElForm'];
     ElFormItem: typeof import('element-plus/es')['ElFormItem'];

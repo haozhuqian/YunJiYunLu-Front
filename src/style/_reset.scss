@@ -59,7 +59,10 @@ html {
   -ms-user-select: none;
   user-select: none;
   transition: color 0.3s ease-in-out;
-  transition: background-color 0.3s ease-in-out;
+  transition:
+    border-color 0.25s,
+    background-color 0.25s,
+    color 0.25s;
 }
 
 img,
