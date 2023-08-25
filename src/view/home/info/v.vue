@@ -64,11 +64,11 @@
 <template>
   <div class="info-list">
     <label class="info" v-for="(info, key) in user.info" :key="key">
-      {{ infoName[key] }}:
+      {{ infoName[key].name }}:
       <input
         type="text"
         v-model="user.info[key]"
-        :readonly="!isChangeing"
+        :readonly="!isChangeing || Boolean(infoName[key]?.readonly)"
         :name="key"
       />
     </label>
@@ -83,17 +83,22 @@
 <script lang="ts" setup>
 import { useUserStore } from '@/store/user';
 const user = reactive(useUserStore());
-const infoName = {
-  name: '姓名',
-  email: '邮箱',
-  phone: '电话',
-  class: '班级',
-  grade: '期数',
-  gender: '性别',
-  major: '专业',
-  number: '学号',
-  birthday: '生日',
-  age: '年龄',
+const infoName: {
+  [key: string]: {
+    name: string;
+    readonly?: boolean;
+  };
+} = {
+  name: { name: '姓名', readonly: true },
+  email: { name: '邮箱' },
+  phone: { name: '电话' },
+  class: { name: '班级' },
+  grade: { name: '期数', readonly: true },
+  gender: { name: '性别' },
+  major: { name: '专业' },
+  number: { name: '学号', readonly: true },
+  birthday: { name: '生日' },
+  age: { name: '年龄' },
 };
 let oldInfo = {};
 const isChangeing = ref(false);
