@@ -36,4 +36,5 @@ export enum role {
   Admin = 1 << 2,
   Normal = 1 << 3,
   visitor = 1 << 4,
+  dev = 1 << 5,
 }
