@@ -29,6 +29,7 @@
     width: 10%;
     height: 20%;
     background-color: var(--color-least);
+    border-radius: 5%;
     transition: bottom 0.5s ease-in-out;
 
     @include flex(column, start, center);
@@ -151,7 +152,9 @@ const menu: any = {
     slist: [
       {
         name: '请假',
+        reason: '默认请假原因',
         behavor: () => {
+          prompt('请输入请假原因');
           from.value.state = states.leave;
           select.type = states.leave;
           showList();
