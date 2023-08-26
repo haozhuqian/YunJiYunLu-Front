@@ -1,11 +1,3 @@
-<!-- <style scoped lang="scss"></style>
-
-<template>
-  <div class="calendar">calendar</div>
-</template>
-
-<script lang="ts" setup></script> -->
-
 <style scoped lang="scss">
 @import '@/style/tool';
 
@@ -14,8 +6,7 @@
   overflow: hidden;
   width: 100%;
   height: 100%;
-  background-color: var(--color-main);
-  border: 2px var(--color-least) solid;
+  background-color: var(--color-primary);
 
   .table {
     margin-top: 5%;

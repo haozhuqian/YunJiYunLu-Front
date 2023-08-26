@@ -1,34 +1,46 @@
 <style lang="scss" scoped>
+@import '@/style/tool';
+
 .home {
-  display: flex;
-  justify-content: center;
+  @include flex(column);
+
   width: 100%;
   height: 100%;
   flex-direction: column;
 
   .head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(row, space-between);
+
     width: 100%;
     height: 40px;
-    border-bottom: 2px var(--color-least) solid;
+    background-color: var(--color-primary);
+    border-bottom: var(--color-main) 2px solid;
 
-    button {
+    .button {
+      padding: 0 10px;
       height: 40px;
+      font-size: 14px;
       background-color: transparent;
       border: 0;
-      border-right: 2px var(--color-least) solid;
-      border-left: 2px var(--color-least) solid;
+      font-weight: 600;
     }
 
-    img {
-      padding: 4px;
-      width: 40px;
+    .time {
+      padding: 0 10px;
       height: 40px;
-      border-right: 2px var(--color-least) solid;
-      border-left: 2px var(--color-least) solid;
+      font-size: 14px;
+      background-color: transparent;
+      line-height: 40px;
+      font-weight: 900;
     }
+
+    // img {
+    //   padding: 4px;
+    //   width: 40px;
+    //   height: 40px;
+    //   border-right: 2px var(--color-least) solid;
+    //   border-left: 2px var(--color-least) solid;
+    // }
   }
 
   .main {
@@ -42,18 +54,21 @@
       width: 20%;
       max-width: 200px;
       height: 100%;
-      background-color: var(--color-showy);
+      background-color: var(--color-primary);
+      border-right: 2px var(--color-main) solid;
       transition: left 0.5s ease-in-out;
       flex-direction: column;
 
       a {
         overflow: hidden;
         height: 32px;
-        font-size: 16px;
+        font-size: 14px;
+        font-weight: 600;
         text-align: center;
         text-decoration: none;
-        color: var(--color-primary);
+        color: var(--color-showy);
         border-bottom: 2px var(--color-primary) solid;
+        background: var(--color-main);
         line-height: 32px;
       }
 
@@ -62,7 +77,8 @@
       }
 
       .selected {
-        background: var(--color-main);
+        color: var(--color-primary);
+        background: var(--color-showy);
       }
     }
 
@@ -91,10 +107,13 @@
 <template>
   <div class="home">
     <div class="head">
-      <button v-if="isNarrow" @click="isOpen = !isOpen">菜单</button>
-      <button @click="changeTheme">主题</button>
+      <cTheme></cTheme>
+      <button v-if="isNarrow" @click="isOpen = !isOpen" class="button">
+        菜单
+      </button>
+      <div class="time">{{ nowTime }}</div>
       <!-- <img class="logo" :src="logo" alt="云顶书院" /> -->
-      <button @click="goOut">退出</button>
+      <button @click="goOut" class="button">退出</button>
     </div>
     <div class="main" :class="{ narrowMain: isNarrow }">
       <nav :class="{ narrowNav: isNarrow, openNav: isOpen && isNarrow }">
@@ -115,12 +134,15 @@
 
 <script lang="ts" setup>
 // import logo from '@/assets/imgs/logo/云顶-黑.png';
+import cTheme from '@/components/changeTheme.vue';
+import useNowTime from '@/hooks/useNowTime';
 import { role } from '@/types/route';
 import { useUserStore } from '@/store/user';
 import debounce from '@/utils/debounce';
 import routes from '@/router/autoImport';
 import { RouteRecordRaw } from 'vue-router';
 
+const nowTime = useNowTime();
 //根据有访问权限的路由加载菜单，
 const home = (routes[0].children as RouteRecordRaw[]).find(
   (item) => item.name === 'home',
@@ -148,11 +170,5 @@ const goOut = () => {
   const user = useUserStore();
   user.$reset();
   router.push({ name: 'start' });
-};
-
-//切换主题
-const changeTheme = () => {
-  document.body.className =
-    document.body.className === 'night' ? 'day' : 'night';
 };
 </script>
