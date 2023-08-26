@@ -26,8 +26,7 @@
     position: fixed;
     top: v-bind(contextMenuTop);
     left: v-bind(contextMenuLeft);
-    width: 10%;
-    height: 20%;
+    width: 8em;
     background-color: var(--color-least);
     border-radius: 5%;
     transition: bottom 0.5s ease-in-out;
@@ -95,7 +94,7 @@
     <!-- 添加@contextmenu.prevent禁用右键点击事件 -->
     <div
       :class="{
-        openP: isOpenP,
+        openP: isOpenP && !isPC,
         panelPC: isPC,
         panelMobi: !isPC,
         rightSideTransition: isRightSide,
