@@ -6,8 +6,8 @@
   height: 100%;
   font-size: 12px;
   color: var(--color-least);
-  background-color: var(--color-primary);
-  border: 4px solid var(--color-main);
+  background-color: var(--color-main);
+  border: 4px solid var(--color-primary);
   border-radius: 10px;
   flex: 1 1 0px;
   font-weight: 900;
@@ -16,11 +16,12 @@
 }
 
 .now {
-  border: 4px solid var(--color-primary);
+  color: var(--color-primary);
+  background-color: var(--color-least);
 }
 
 .nothing {
-  background-color: var(--color-main);
+  background-color: var(--color-primary);
 }
 
 .study {
@@ -36,7 +37,10 @@
 <template>
   <div
     class="content"
-    :class="{ now: time === times.now, [states[props.state] ?? '']: true }"
+    :class="{
+      [states[props.state] ?? '']: time !== times.now,
+      now: time === times.now,
+    }"
     :type="props.state"
     :time="props.time"
   >
