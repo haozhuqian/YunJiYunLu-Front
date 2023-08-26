@@ -40,7 +40,7 @@ export default function <R extends object>(conf: {
     table[0][index + 1][state.key] = -1 as R[keyof R];
   });
   //获取当前时间
-  const now = new Date(2011, 0, 1, 9, 0);
+  const now = new Date(2011, 0, 1, 20, 0);
   const day = ((now.getDay() + 6) % 7) + 1;
   //将过去日期的时间状态改为old
   for (let i = 1; i < width; i++) {
@@ -53,12 +53,14 @@ export default function <R extends object>(conf: {
   //将小时转换为对应的日程时间段
   let hour = Math.floor(now.getHours() / 2 - 3);
   //如果此时在工作时间段内，则将对应时间的状态改为now
-  if (hour < 0 || hour === 3 || hour >= heigh) {
+
+  if (hour < 0 || hour === 3 || hour > heigh) {
     return reactive(table);
-  } else if (hour > 3 && hour < heigh) {
+  } else if (hour > 3 && hour <= heigh) {
     hour--;
   }
   table[day][hour][time.key] = time.now as R[keyof R];
+
   //将过去的时间状态改为old
   for (let j = 1; j < hour; j++) {
     table[day][j][time.key] = time.old as R[keyof R];
