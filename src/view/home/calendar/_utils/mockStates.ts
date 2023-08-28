@@ -40,7 +40,7 @@ export default function <R extends object>(conf: {
     table[0][index + 1][state.key] = -1 as R[keyof R];
   });
   //获取当前时间
-  const now = new Date(2011, 0, 1, 20, 0);
+  const now = new Date();
   const day = ((now.getDay() + 6) % 7) + 1;
   //将过去日期的时间状态改为old
   for (let i = 1; i < width; i++) {

@@ -1,7 +1,7 @@
-export default function <T extends Record<string, number | string>>(
-  enumObj: T,
+export default function getNumericEnumValues<R = any>(
+  enumObj: Record<string, number | string>,
 ) {
-  return (key: keyof T) => {
-    return enumObj[key];
-  };
+  return Object.keys(enumObj)
+    .filter((key) => typeof enumObj[key] === 'number')
+    .map((key) => enumObj[key] as number) as R[];
 }

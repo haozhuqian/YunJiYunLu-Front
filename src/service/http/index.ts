@@ -3,7 +3,7 @@ const ms: Record<string, any> = import.meta.glob(['./modules/**/!(*.d).ts'], {
   eager: true,
 });
 
-const modules = {};
+const modules: any = {};
 interface IModule {
   [propName: string]: IModule;
 }
