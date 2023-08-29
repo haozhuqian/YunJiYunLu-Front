@@ -1,5 +1,7 @@
 import getREnum from '@/utils/getREnum';
+import { Ref } from 'vue';
 
+//随机生成一个三位字符串
 function generateRandomString(): string {
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -11,20 +13,21 @@ function generateRandomString(): string {
   return result;
 }
 
+//这个函数用于生成对应格式的表格数据，在与后端对接时可以在此基础上修改
 export default function <R extends object>(conf: {
   name: {
     row: string[]; //第一行填充的内容
     column: string[]; //第一列填充的内容
   };
   state: {
-    enumObj: Record<string, number | string>; //状态值
+    enumObj: Record<string, number | string>; //状态可选枚举值
   };
 }) {
-  const { name, state } = conf;
-  const width = name.row.length;
-  const heigh = name.column.length + 1;
-  //一个表格雏形
-  const table: { name: string; content: R[] }[][] = [];
+  const { name, state } = conf; //解构参数
+  const width = name.row.length; //表格的宽
+  const heigh = name.column.length + 1; //表格的高
+  //一个表格雏形，因为没有必要对一级数组和二级数组做响应式追踪，所以仅仅在content数组中使用ref
+  const table: { name: string; content: Ref<R>[] }[][] = [];
   //随机获取一个状态值
   const randomEnum = getREnum(state.enumObj);
   //根据第一行与第一列的长度填充状态与坐标
@@ -33,13 +36,15 @@ export default function <R extends object>(conf: {
     for (let j = 1; j < heigh; j++) {
       table[i][j] = { name: '', content: [] };
       for (let k = 0; k < heigh; k++) {
-        table[i][j].content.push({
-          name: generateRandomString(),
-          status: randomEnum(),
-          x: i,
-          y: j,
-          z: k,
-        } as R);
+        table[i][j].content.push(
+          ref({
+            name: generateRandomString(), //随机的用户名
+            status: randomEnum(), //随机的用户状态
+            x: i,
+            y: j,
+            z: k,
+          }) as Ref<R>,
+        );
       }
     }
   }
@@ -51,5 +56,5 @@ export default function <R extends object>(conf: {
     table[0][index + 1] = { name: column, content: [] };
   });
 
-  return reactive(table);
+  return table;
 }

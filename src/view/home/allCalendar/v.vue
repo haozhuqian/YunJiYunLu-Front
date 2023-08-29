@@ -26,7 +26,12 @@
   <div class="all">
     <div class="table" @click="check($event)">
       <div class="column" v-for="(column, x) in table" :key="x">
-        <content v-bind="row" v-for="(row, y) in column" :key="y"></content>
+        <content
+          :name="row.name"
+          :content="row.content"
+          v-for="(row, y) in column"
+          :key="y"
+        ></content>
       </div>
     </div>
     <div class="controller">
@@ -65,9 +70,6 @@ const check = (e: MouseEvent) => {
   const y = Number(Element.getAttribute('y'));
   if (!(x * y)) return;
   const z = Number(Element.getAttribute('z'));
-  checkedList[table[x][y].content[z].status].push(
-    toRefs(table[x][y].content[z]),
-  );
-  console.log(checkedList[table[x][y].content[z].status]);
+  checkedList[table[x][y].content[z].value.status].push(table[x][y].content[z]);
 };
 </script>

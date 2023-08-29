@@ -22,12 +22,11 @@
   }
 
   .unsign {
-    color: var(--color-primary);
     background-color: var(--color-main);
   }
 
   .signIn {
-    background-color: var(--color-main);
+    background-color: var(--color-minor);
   }
 
   .leave {
@@ -36,7 +35,8 @@
   }
 
   .signOut {
-    background-color: var(--color-minor);
+    color: var(--color-primary);
+    background-color: var(--color-least);
   }
 }
 </style>
@@ -47,14 +47,14 @@
     <div
       v-else
       class="user"
-      :class="[status[user.status]]"
       v-for="user in props.content"
-      :key="user.z"
-      :x="user.x"
-      :y="user.y"
-      :z="user.z"
+      :class="[status[user.value.status]]"
+      :key="user.value.z"
+      :x="user.value.x"
+      :y="user.value.y"
+      :z="user.value.z"
     >
-      {{ user.name }}{{ user.status }}
+      {{ user.value.name }}{{ user.value.status }}
     </div>
   </div>
 </template>
@@ -64,6 +64,6 @@ import { status, contentType } from '../_type/status';
 
 const props = defineProps<{
   name: string;
-  content: contentType[];
+  content: Ref<contentType>[];
 }>();
 </script>
