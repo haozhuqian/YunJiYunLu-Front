@@ -19,3 +19,16 @@ export type contentType = {
   name: string;
   status: status;
 };
+
+// 控制参数 的类型
+export type baseControllers = {
+  err(event: eventType, type: status): string; // 操作匹配到错误的类型时运行的函数
+  right(
+    from: status,
+    to: status,
+    other?: (checked: Ref<contentType>, from: status) => void,
+  ): void; // 操作匹配到正确的类型时运行的函数
+};
+export type eventControllers = {
+  [key in eventType]?: () => void;
+};

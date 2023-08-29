@@ -4,20 +4,14 @@
 //用户状态操作事件 对象(eventControllers)
 
 import { Ref } from 'vue';
-import { status, eventType, contentType } from '../_type/status';
+import {
+  baseControllers,
+  eventControllers,
+  status,
+  eventType,
+  contentType,
+} from '../_type/status';
 import getEnum from '@/utils/getEnum';
-// 控制参数 的类型
-type baseControllers = {
-  err(event: eventType, type: status): string; // 操作匹配到错误的类型时运行的函数
-  right(
-    from: status,
-    to: status,
-    other?: (checked: Ref<contentType>, from: status) => void,
-  ): void; // 操作匹配到正确的类型时运行的函数
-};
-type eventControllers = {
-  [key in eventType]?: () => void;
-};
 
 //不同用户状态名
 const statusName: { [name in status]: string } = {

@@ -54,15 +54,15 @@ import content from './_com/content.vue';
 //导入用户状态枚举类型与用户对象类型
 import { status, contentType } from './_type/status';
 //导入用于生成对应格式的表格数据的函数
-import getTable from './hooks/getTable';
-//选中用户列表 对象(checkedList)
-//用户状态操作名称 对象(eventName)
-//用户状态操作事件 对象(eventControllers)
+import getTable from './_hooks/getTable';
+//导入选中用户列表 对象(checkedList)
+//导入用户状态操作名称 对象(eventName)
+//导入用户状态操作事件 对象(eventControllers)
 import {
   checkedList,
   eventName,
   eventControllers,
-} from './hooks/userStatusControl';
+} from './_hooks/userStatusControl';
 //获取对应格式的表格数据
 const table = getTable<contentType>({
   name: {
@@ -89,3 +89,4 @@ const check = (e: MouseEvent) => {
   checkedList[table[x][y].content[z].value.status].push(table[x][y].content[z]);
 };
 </script>
+./_hooks/getTable./_hooks/userStatusControl
