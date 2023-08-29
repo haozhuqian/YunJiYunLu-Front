@@ -45,7 +45,7 @@
       "#/*": ["src/types/*"],
     },
     // 生成相关的 '.d.ts' 文件
-    "declaration": true,
+    "declaration": false,
     // '.d.ts' 文件输出目录
     "declarationDir": "src/types",
     // 配置虚拟目录

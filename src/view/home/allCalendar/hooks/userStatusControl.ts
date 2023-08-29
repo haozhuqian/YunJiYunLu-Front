@@ -1,3 +1,8 @@
+//这个hook用于对用户状态管理的封装，导出了
+//选中用户列表 对象(checkedList)
+//用户状态操作名称 对象(eventName)
+//用户状态操作事件 对象(eventControllers)
+
 import { Ref } from 'vue';
 import { status, eventType, contentType } from '../_type/status';
 import getEnum from '@/utils/getEnum';
@@ -14,7 +19,7 @@ type eventControllers = {
   [key in eventType]?: () => void;
 };
 
-//不同状态名
+//不同用户状态名
 const statusName: { [name in status]: string } = {
   [status.unsign]: '未签到',
   [status.signIn]: '已签到',
@@ -49,7 +54,6 @@ const checkedList: {
   [status.signOut]: [],
   [status.unsign]: [],
 });
-
 //事件匹配到正确和错误选项后的行为
 const baseControllerMap: baseControllers = {
   //如果选择的用户类型不是当前操作应当操作的（比如登录操作不能对已请假，已签退，已登录这三种状态的用户操作）

@@ -1,3 +1,5 @@
+//这个hook用于对用户对象列表的生成进行封装，导出了用于生成对应格式的表格数据的函数
+
 import getREnum from '@/utils/getREnum';
 import { Ref } from 'vue';
 
