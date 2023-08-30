@@ -11,6 +11,7 @@ export default () => {
     const seconds = String(now.getSeconds()).padStart(2, '0');
     formattedDateTime.value = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   };
+  updateTime();
   const timeId = setInterval(updateTime, 1000);
   onUnmounted(() => clearInterval(timeId));
   return formattedDateTime;

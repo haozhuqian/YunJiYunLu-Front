@@ -25,6 +25,7 @@
 </style>
 
 <template>
+  <!-- 如果本组件失去焦点，则触发关闭选项列表事件 -->
   <div class="calendar" @blur="event.unSelect" tabindex="0">
     <div class="table" @click="check($event)">
       <div v-for="(day, dayIndex) in table" class="row" :key="dayIndex">
@@ -56,7 +57,6 @@ const check = (e: MouseEvent) => {
   //如果点击的是最左侧或者最上侧一栏，直接返回
   if (!(x * y)) return;
   //校验通过，选中它
-
   event.select(x, y);
 };
 </script>
