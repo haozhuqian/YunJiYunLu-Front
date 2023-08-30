@@ -97,6 +97,33 @@ const tick = (video: HTMLVideoElement, canvas: CanvasRenderingContext2D) => {
     canvasRef.value = canvasRef.value as HTMLCanvasElement;
     // 把摄像头影像绘制到canvas上
     canvas.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+    //绘制半透明区域
+    canvas.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    canvas.fillRect(0, 0, props.size, props.size / 6);
+    canvas.fillRect(0, (props.size * 5) / 6, props.size, props.size);
+    canvas.fillRect(0, props.size / 6, props.size / 6, (props.size * 2) / 3);
+    canvas.fillRect(
+      (props.size * 5) / 6,
+      props.size / 6,
+      props.size,
+      (props.size * 2) / 3,
+    );
+    //绘制四角的小框
+    canvas.strokeStyle = 'rgb(16, 249, 12)';
+    canvas.beginPath();
+    canvas.moveTo(props.size / 4, props.size / 3);
+    canvas.lineTo(props.size / 4, props.size / 4);
+    canvas.lineTo(props.size / 3, props.size / 4);
+    canvas.moveTo((props.size * 3) / 4, props.size / 3);
+    canvas.lineTo((props.size * 3) / 4, props.size / 4);
+    canvas.lineTo((props.size * 2) / 3, props.size / 4);
+    canvas.moveTo(props.size / 4, (props.size * 2) / 3);
+    canvas.lineTo(props.size / 4, (props.size * 3) / 4);
+    canvas.lineTo(props.size / 3, (props.size * 3) / 4);
+    canvas.moveTo((props.size * 3) / 4, (props.size * 2) / 3);
+    canvas.lineTo((props.size * 3) / 4, (props.size * 3) / 4);
+    canvas.lineTo((props.size * 2) / 3, (props.size * 3) / 4);
+    canvas.stroke();
     // 截取这一帧的影像
     const imageData = canvas.getImageData(
       0,

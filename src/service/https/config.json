@@ -2,13 +2,13 @@
   "record": {
     "hosts": [
       "localhost",
-      "192.168.68.237",
+      "101.7.166.227",
       "127.0.0.1"
     ],
     "hash": {
-      "key": "b5cd38d8f6f29fcec3331c6dc2de2eba76a08a269acb6891fd0a8dfb0a61b2c7",
-      "cert": "e8710c12c4907d89a6b82649e73f8a845d94225e462ee166eda0153c87eb09de"
+      "key": "68f649ce90d21a149c35fe7cf8462cef1185cf39e0bb32eec06ca28f24a3c3e1",
+      "cert": "28c70ba2948ad61820d512608ea90e798d48d45e6364aec4fa6541ccb76246fd"
     }
   },
-  "configFilePath": "D:\\yun\\goodMoney\\YunJiYunLu-Front\\src\\service\\https\\config.json"
+  "configFilePath": "D:\\云骥云麓\\YunJiYunLu-Front\\src\\service\\https\\config.json"
 }
