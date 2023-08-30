@@ -3,7 +3,6 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import routes from './autoImport';
 import { useUserStore } from '@/store/user';
-import { ElMessage } from 'element-plus';
 
 console.log(routes);
 
@@ -16,11 +15,9 @@ router.beforeEach(async (to) => {
   const user = useUserStore();
 
   if (!user.accessable(to.meta.role)) {
-    ElMessage.error('您没有权限访问');
-
-    if (user.token) {
+    if (!user.token) {
       console.log(Boolean(user.token));
-      return { name: 'home' };
+      return { name: 'start' };
     }
     return false;
   }

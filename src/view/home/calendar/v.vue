@@ -25,7 +25,7 @@
 </style>
 
 <template>
-  <div class="calendar">
+  <div class="calendar" @blur="event.unSelect" tabindex="0">
     <div class="table" @click="check($event)">
       <div v-for="(day, dayIndex) in table" class="row" :key="dayIndex">
         <content
@@ -47,19 +47,14 @@ import { table } from './_hooks/getTable';
 import { event } from './_hooks/useStatusControl';
 
 const check = (e: MouseEvent) => {
+  event.unSelect();
   const Element = e.target as HTMLElement;
   //如果点击的不是日程表的内容，直接返回
-  if (!Element.classList.contains('content')) {
-    event.unSelect();
-    return;
-  }
+  if (!Element.classList.contains('content')) return;
   const x = Number(Element.getAttribute('x'));
   const y = Number(Element.getAttribute('y'));
   //如果点击的是最左侧或者最上侧一栏，直接返回
-  if (!(x * y)) {
-    event.unSelect();
-    return;
-  }
+  if (!(x * y)) return;
   //校验通过，选中它
 
   event.select(x, y);
