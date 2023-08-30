@@ -63,11 +63,11 @@
 
 <template>
   <div class="info-list">
-    <label class="info" v-for="(info, key) in user.info" :key="key">
+    <label class="info" v-for="(info, key) in user.info[0]" :key="key">
       {{ infoName[key].name }}:
       <input
         type="text"
-        v-model="user.info[key]"
+        v-model="user.info[0][key]"
         :readonly="!isChangeing || Boolean(infoName[key]?.readonly)"
         :name="key"
       />
@@ -94,6 +94,7 @@ const infoName: {
   phone: { name: '电话' },
   class: { name: '班级' },
   grade: { name: '期数', readonly: true },
+  direction: { name: '方向', readonly: true },
   gender: { name: '性别' },
   major: { name: '专业' },
   number: { name: '学号', readonly: true },
