@@ -5,15 +5,17 @@
   position: fixed;
   top: v-bind(mouseY);
   left: v-bind(mouseX);
+  z-index: 2;
   width: 10%;
   height: 150px;
   background-color: var(--color-least);
   border-radius: 5px;
 
-  @include flex(column, space-around, center);
+  @include flex(column, space-around);
 
   .name {
     font-size: 12px;
+    text-align: center;
     color: var(--color-main);
     font-weight: 600;
   }
@@ -22,16 +24,17 @@
 .panelMobi {
   position: absolute;
   bottom: -60%;
+  z-index: 2;
   width: 100%;
   height: 60%;
   background-color: var(--color-least);
   transition: bottom 0.5s ease-in-out;
 
-  @include flex(column, space-around, center);
+  @include flex(column, space-around);
 
   .name {
     font-size: 14px;
-    line-height: 20px;
+    text-align: center;
     color: var(--color-main);
     font-weight: 600;
   }
