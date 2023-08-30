@@ -20,6 +20,11 @@
   background-color: var(--color-least);
 }
 
+.outside {
+  color: var(--color-least);
+  background-color: var(--color-main);
+}
+
 .nothing {
   background-color: var(--color-primary);
 }
@@ -37,31 +42,28 @@
 <template>
   <div
     class="content"
-    :class="{
-      [states[props.state] ?? '']: time !== times.now,
-      now: time === times.now,
-    }"
-    :type="props.state"
-    :time="props.time"
+    :class="[time === times.now ? 'now' : status[props.state]]"
+    :x="props.x"
+    :y="props.y"
   >
-    {{ props.name || (props.state === -1 ? '' : names[props.state]) }}
+    {{ props.name || statusNames[props.state] }}
   </div>
 </template>
 
 <script lang="ts" setup>
-import { states, times } from '../_type/states';
+import { status, times } from '../_type/status';
+const props = defineProps<{
+  time: times;
+  state: status;
+  name: string;
+  x: number;
+  y: number;
+}>();
 
-const props = withDefaults(
-  defineProps<{
-    time?: times;
-    state?: states | -1;
-    name?: string;
-  }>(),
-  {
-    time: times.future,
-    state: -1,
-  },
-);
-
-const names = ['请假', '', '研学'];
+const statusNames: { [key in status]: string } = {
+  [status.leave]: '请假',
+  [status.nothing]: '',
+  [status.study]: '研学',
+  [status.outside]: props.name,
+};
 </script>

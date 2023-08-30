@@ -93,7 +93,7 @@
       left: 0;
     }
 
-    .content {
+    .home-content {
       flex-grow: 1;
     }
   }
@@ -125,7 +125,7 @@
           >{{ nav.name }}</router-link
         >
       </nav>
-      <div class="content" @click="isOpen = false">
+      <div class="home-content" @click="isOpen = false">
         <router-view></router-view>
       </div>
     </div>
@@ -138,9 +138,9 @@ import cTheme from '@/components/changeTheme.vue';
 import useNowTime from '@/hooks/useNowTime';
 import { role } from '@/types/route';
 import { useUserStore } from '@/store/user';
-import debounce from '@/utils/debounce';
 import routes from '@/router/autoImport';
 import { RouteRecordRaw } from 'vue-router';
+import useSize from '@/hooks/useSize';
 
 const nowTime = useNowTime();
 //根据有访问权限的路由加载菜单，
@@ -155,13 +155,9 @@ const navs = home
 //实现菜单在过窄的窗口中收起菜单，并出现展开菜单按钮
 const isNarrow = ref(false);
 const isOpen = ref(false);
-isNarrow.value = window.innerWidth < 600 ? true : false;
-const fitWidth = debounce(() => {
-  isNarrow.value = window.innerWidth < 600 ? true : false;
-}, 500);
-addEventListener('resize', fitWidth);
-onUnmounted(() => {
-  window.removeEventListener('resize', fitWidth);
+const { width } = useSize();
+watchEffect(() => {
+  isNarrow.value = width.value < 600;
 });
 
 //退出登录，初始化用户信息
@@ -172,3 +168,4 @@ const goOut = () => {
   router.push({ name: 'start' });
 };
 </script>
+@/hooks/useSize

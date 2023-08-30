@@ -51,28 +51,14 @@
 <script lang="ts" setup>
 //导入用户信息组件
 import content from './_com/content.vue';
-//导入用户状态枚举类型与用户对象类型
-import { status, contentType } from './_type/status';
 //导入用于生成对应格式的表格数据的函数
-import getTable from './_hooks/getTable';
-//导入选中用户列表 对象(checkedList)
-//导入用户状态操作名称 对象(eventName)
-//导入用户状态操作事件 对象(eventControllers)
+import { table } from './_hooks/getTable';
 import {
-  checkedList,
-  eventName,
-  eventControllers,
+  checkedList, //导入选中用户列表 对象
+  eventName, //导入用户状态操作名称 对象
+  eventControllers, //导入用户状态操作事件 对象
 } from './_hooks/userStatusControl';
 //获取对应格式的表格数据
-const table = getTable<contentType>({
-  name: {
-    row: ['java', 'ai', 'fullstack', 'cpu'],
-    column: ['1', '2', '3', '1', '1'],
-  },
-  state: {
-    enumObj: status,
-  },
-});
 //选中用户的操作
 const check = (e: MouseEvent) => {
   const Element = e.target as HTMLElement;
@@ -86,7 +72,7 @@ const check = (e: MouseEvent) => {
   if (!(x * y)) return;
   const z = Number(Element.getAttribute('z'));
   //将对应的响应式用户对象加入对应选中用户列表
+  table[x][y].content[z].value.status;
   checkedList[table[x][y].content[z].value.status].push(table[x][y].content[z]);
 };
 </script>
-./_hooks/getTable./_hooks/userStatusControl

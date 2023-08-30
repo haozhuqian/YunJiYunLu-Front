@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-export default function getCurrentDateTime() {
+export default () => {
   const formattedDateTime = ref('');
   const updateTime = () => {
     const now = new Date();
@@ -14,4 +14,4 @@ export default function getCurrentDateTime() {
   const timeId = setInterval(updateTime, 1000);
   onUnmounted(() => clearInterval(timeId));
   return formattedDateTime;
-}
+};
