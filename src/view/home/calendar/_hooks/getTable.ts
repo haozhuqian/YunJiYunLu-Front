@@ -1,3 +1,5 @@
+//这个hook用于对日程列表的生成进行封装，导出了生成的对应格式的表格数据
+
 import getREnum from '@/utils/getREnum';
 import { status, times, contentType } from '../_type/status';
 

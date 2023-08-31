@@ -9,6 +9,8 @@ declare module 'vue' {
   export interface GlobalComponents {
     ChangeTheme: typeof import('./../components/changeTheme.vue')['default'];
     ElButton: typeof import('element-plus/es')['ElButton'];
+    ElDescriptions: typeof import('element-plus/es')['ElDescriptions'];
+    ElDescriptionsItem: typeof import('element-plus/es')['ElDescriptionsItem'];
     ElForm: typeof import('element-plus/es')['ElForm'];
     ElFormItem: typeof import('element-plus/es')['ElFormItem'];
     ElIcon: typeof import('element-plus/es')['ElIcon'];
@@ -19,6 +21,7 @@ declare module 'vue' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn'];
     ElTabPane: typeof import('element-plus/es')['ElTabPane'];
     ElTabs: typeof import('element-plus/es')['ElTabs'];
+    ElTag: typeof import('element-plus/es')['ElTag'];
     RouterLink: typeof import('vue-router')['RouterLink'];
     RouterView: typeof import('vue-router')['RouterView'];
   }

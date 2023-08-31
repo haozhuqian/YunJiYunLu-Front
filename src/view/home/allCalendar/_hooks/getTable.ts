@@ -1,4 +1,4 @@
-//这个hook用于对用户对象列表的生成进行封装，导出了用于生成的对应格式的表格数据
+//这个hook用于对用户对象列表的生成进行封装，导出了生成的对应格式的表格数据
 
 import getREnum from '@/utils/getREnum';
 import { contentType, status } from '../_type/status';

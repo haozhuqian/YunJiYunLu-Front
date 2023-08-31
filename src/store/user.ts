@@ -36,6 +36,7 @@ export const useUserStore = defineStore('user', {
     ],
   }),
   actions: {
+    //鉴权方法，用户具有该权限则返回true
     accessable(role: role): boolean {
       return Boolean(role & this.role);
     },
