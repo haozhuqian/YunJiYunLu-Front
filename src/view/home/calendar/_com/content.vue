@@ -34,6 +34,11 @@
   background-color: var(--color-showy);
 }
 
+.checked {
+  z-index: 1;
+  outline: var(--color-least) solid 2px;
+}
+
 .leave {
   background-color: var(--color-minor);
 }
@@ -42,7 +47,10 @@
 <template>
   <div
     class="content"
-    :class="[time === times.now ? 'now' : status[props.state]]"
+    :class="{
+      [time === times.now ? 'now' : status[props.state]]: true,
+      checked: checked,
+    }"
     :x="props.x"
     :y="props.y"
   >
@@ -58,6 +66,7 @@ const props = defineProps<{
   name: string;
   x: number;
   y: number;
+  checked: boolean;
 }>();
 
 const statusNames: { [key in status]: string } = {

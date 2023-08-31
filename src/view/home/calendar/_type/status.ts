@@ -18,6 +18,7 @@ export type contentType = {
   state: status; //日程状态
   x: number; //横坐标
   y: number; //纵坐标
+  checked: boolean; //纵坐标
 };
 //选项列表对象的类型
 export type eventMeun = { [key in status]: [string, () => void][] };

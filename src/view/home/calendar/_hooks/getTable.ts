@@ -27,7 +27,14 @@ for (let i = 0; i < width; i++) {
   for (let j = 0; j < heigh; j++) {
     let state = randomEnum();
     if (state === status.outside) state = status.nothing;
-    table[i][j] = ref({ state, x: i, y: j, time: times.future, name: '' });
+    table[i][j] = ref({
+      state,
+      x: i,
+      y: j,
+      time: times.future,
+      name: '',
+      checked: false,
+    });
   }
 }
 //填充第一行与第一列的内容

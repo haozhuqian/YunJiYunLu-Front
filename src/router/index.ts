@@ -16,10 +16,10 @@ router.beforeEach(async (to) => {
 
   if (!user.accessable(to.meta.role)) {
     if (!user.token) {
-      console.log(Boolean(user.token));
       return { name: 'start' };
+    } else {
+      return { name: 'home' };
     }
-    return false;
   }
   NProgress.start();
 });
