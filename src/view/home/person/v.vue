@@ -131,7 +131,7 @@
     </div>
     <!-- 信息展示 -->
     <div class="table">
-      <el-table :data="user.info" stripe border style="width: 100%">
+      <el-table :data="userInfo" stripe border style="width: 100%">
         <el-table-column
           v-for="(value, key) in info"
           :prop="key"
@@ -178,10 +178,8 @@
 </template>
 
 <script lang="ts" setup>
-import { useUserStore } from '@/store/user';
+import userInfo from './_store/searchReasult';
 import { ElInput } from 'element-plus';
-// 引入store
-const user = useUserStore();
 
 //以下是一些储存数据的数据对象
 
@@ -237,15 +235,15 @@ const isDetailShow: Ref<boolean> = ref(false);
 
 //删除某人信息时将对应数据删除，并临时储存被删除的信息
 const deletePeople = (index: number) => {
-  const deletedItem = user.info.splice(index, 1);
+  const deletedItem = userInfo.splice(index, 1);
   deleteInfo.push(deletedItem[0]);
 };
 //详细信息页展示的信息对象
-const detailInfo = ref(user.info[0]);
+const detailInfo = ref(userInfo[0]);
 //展示
 const showDetails = (index: number) => {
   isDetailShow.value = true;
-  detailInfo.value = user.info[index];
+  detailInfo.value = userInfo[index];
 };
 
 //强制刷新input输入框绑定的数据

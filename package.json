@@ -16,6 +16,7 @@
     "@element-plus/icons-vue": "^2.1.0",
     "axios": "^1.4.0",
     "element-plus": "^2.3.8",
+    "exceljs": "^4.3.0",
     "jsqr": "^1.4.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.4",

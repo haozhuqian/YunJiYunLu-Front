@@ -37,6 +37,7 @@
         </content>
       </div>
     </div>
+    <div></div>
     <panel></panel>
   </div>
 </template>
