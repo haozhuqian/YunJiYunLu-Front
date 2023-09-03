@@ -2,252 +2,214 @@
 @import '@/style/tool';
 
 .person {
-  position: relative;
-  top: 3%;
-  left: 3%;
-  z-index: 0;
-  width: 95%;
-  height: 10em;
+  @include flex(column, start, center);
+
+  width: 100%;
+  height: 100%;
   background-color: var(--color-primary);
-}
 
-.searchBar {
-  position: absolute;
-  display: flex;
-  justify-content: space-between;
-  margin-right: 5%;
-  margin-left: 5%;
-  width: 90%;
-}
+  .searchBar {
+    @include flex(row, space-between);
 
-.inputStudentID {
-  width: 15em;
-  color: var(--color-least);
-}
+    z-index: 10;
+    margin-top: 20px;
+    width: 90%;
+    min-width: 920px;
+  }
 
-.inputStudentName {
-  width: 13em;
-  color: var(--color-least);
-}
+  .table {
+    position: relative;
+    overflow: scroll;
+    margin: 20px 0;
+    width: 90%;
+    min-width: 920px;
+    height: 90%;
+    border: var(--color-showy) 1px solid;
+    border-radius: 4px;
 
-.table {
-  position: absolute;
-  margin-top: 5%;
-  margin-right: 5%;
-  margin-left: 5%;
-  width: 90%;
-}
+    .userInfoNames {
+      position: absolute;
+      right: 0;
+      left: 0;
 
-.operations {
-  display: flex;
-}
+      @include flex(row);
 
-.isDetailShow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: 10%;
-  transform: translate(-50%, -50%);
-}
+      border-bottom: var(--color-showy) 1px solid;
+      background-color: var(--color-showy);
 
-.messageShowBox {
-  position: relative;
-  z-index: 10;
-  padding: 10px;
-  margin-left: 30%;
-  width: 40%;
-  background-color: var(--color-minor);
-  border-radius: 5px;
-}
+      .infoName,
+      .controllerName {
+        flex: 1 1 10%;
+        line-height: 28px;
+        text-align: center;
+        color: var(--color-primary);
+      }
 
-.closeBtn {
-  position: absolute;
-  right: 10px;
+      .infoName {
+        border-right: var(--color-primary) 1px solid;
+      }
+    }
+
+    .userInfoList {
+      position: absolute;
+      inset: 28px 0 0;
+      overflow: scroll;
+
+      .userInfos {
+        @include flex(column, space-between);
+
+        .baseInfo {
+          @include flex(row, space-between);
+
+          .userInfo,
+          .controller {
+            flex: 1 1 10%;
+            line-height: 28px;
+            text-align: center;
+          }
+
+          .userInfo {
+            border-right: var(--color-showy) 1px solid;
+            border-bottom: var(--color-showy) 1px solid;
+          }
+
+          .controller {
+            @include flex(row, center, center);
+
+            border-bottom: var(--color-showy) 1px solid;
+          }
+        }
+
+        .detailsInfo {
+          @include flex(row, start);
+
+          display: none;
+          background-color: var(--color-main);
+          flex-wrap: wrap;
+
+          .details {
+            margin: 5px 0;
+            width: 25%;
+            height: 24px;
+            text-align: center;
+            transition: height 0.3s ease-in-out;
+
+            @include flex(row, start);
+
+            .name {
+              padding: 0 5px;
+              line-height: 24px;
+              border-right: var(--color-least) 1px solid;
+            }
+
+            .info {
+              padding: 0 5px;
+              line-height: 24px;
+            }
+          }
+        }
+
+        .showDetailsInfo {
+          display: flex;
+          height: auto;
+          border-bottom: var(--color-showy) 1px solid;
+        }
+      }
+    }
+  }
 }
 </style>
 
 <template>
-  <!-- 人员管理页面 -->
   <div class="person">
     <div class="searchBar">
-      <el-input
-        v-model="studentID"
-        placeholder="请输入学号"
-        class="inputStudentID"
-        maxlength="10"
-        @input="inputUpdate"
-      >
-        <template #prepend>
-          <p>学号：</p>
-        </template>
-      </el-input>
-      <el-input
-        v-model="studentName"
-        placeholder="请输入姓名"
-        class="inputStudentName"
-        maxlength="4"
-        @input="inputUpdate"
-      >
-        <template #prepend>
-          <p>姓名：</p>
-        </template>
-      </el-input>
-      <el-select
-        v-model="selectGender"
-        placeholder="Select"
-        style="width: 115px"
-      >
-        <el-option label="男" value="1" />
-        <el-option label="女" value="2" />
-      </el-select>
-      <el-select
-        v-model="selectGrade"
-        placeholder="Select"
-        style="width: 115px"
-      >
-        <el-option
-          v-for="(value, index) in grade"
-          :label="value"
-          :value="index"
-          :key="value"
-        ></el-option>
-      </el-select>
-      <el-select
-        v-model="selectDirection"
-        placeholder="Select"
-        style="width: 115px"
-      >
-        <el-option
-          v-for="(value, key) in direction"
-          :label="key"
-          :value="value"
-          :key="key"
-        ></el-option>
-      </el-select>
-      <el-button>
-        <el-icon><Search /></el-icon>
-        <p>&nbsp; 搜索</p>
-      </el-button>
+      <button @click="console.log(searchCondition)">搜索</button>
+      <component
+        v-for="props in chouse"
+        :is="'option' in props[1] ? selectInput : textInput"
+        :key="props[0]"
+        v-bind="props[1]"
+        @update="(newValue) => (searchCondition[props[0]] = newValue)"
+      />
     </div>
     <!-- 信息展示 -->
     <div class="table">
-      <el-table :data="userInfo" stripe border style="width: 100%">
-        <el-table-column
-          v-for="(value, key) in info"
-          :prop="key"
-          :label="value"
-          :key="value"
-        />
-        <!-- 对用户进行操作 -->
-        <el-table-column label="操作" class="operations">
-          <template #default="scope">
-            <el-button size="small" @click.prevent="showDetails(scope.$index)"
-              >详情</el-button
-            >
-            <el-button
-              size="small"
-              type="danger"
-              @click.prevent="deletePeople(scope.$index)"
-              >删除</el-button
-            >
-          </template>
-        </el-table-column>
-      </el-table>
+      <!-- 表头 -->
+      <div class="userInfoNames">
+        <div class="infoName" v-for="name in baseInfo" :key="name">
+          {{ infoName[name] }}
+        </div>
+        <div class="controllerName">操作</div>
+      </div>
+      <!-- 内容 -->
+      <div class="userInfoList">
+        <div
+          class="userInfos"
+          v-for="(userInfo, index) in searchReasult"
+          :key="index"
+        >
+          <!-- 基础信息 -->
+          <div class="baseInfo">
+            <div class="userInfo" v-for="name in baseInfo" :key="name">
+              {{ userInfo[name] }}
+            </div>
+            <div class="controller">
+              <button @click="showDetails(index)">
+                {{
+                  index === detailInfoIndex && isDetailShow ? '关闭' : '详情'
+                }}
+              </button>
+              <button @click="deleteUser(index)">删除</button>
+            </div>
+          </div>
+          <!-- 详细信息 -->
+          <div
+            class="detailsInfo"
+            :class="{
+              showDetailsInfo: index === detailInfoIndex && isDetailShow,
+            }"
+          >
+            <div class="details" v-for="(name, key) in infoName" :key="name">
+              <div class="name">{{ name }}:</div>
+              <div class="info">{{ userInfo[key] }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <!-- 详情页 -->
-  <div class="messageShowBox" v-show="isDetailShow">
-    <el-button
-      size="small"
-      type="danger"
-      class="closeBtn"
-      @click="isDetailShow = false"
-      >关闭</el-button
-    >
-    <el-descriptions title="详情" :column="4" border>
-      <el-descriptions-item
-        v-for="(value, key) in detailInfoDescriptions"
-        :label="value"
-        label-align="right"
-        align="center"
-        :key="value"
-        ><p>{{ detailInfo[key] }}</p></el-descriptions-item
-      >
-    </el-descriptions>
   </div>
 </template>
 
 <script lang="ts" setup>
-import userInfo from './_store/searchReasult';
-import { ElInput } from 'element-plus';
+import searchReasult from './_store/searchReasult';
+import chouse from './_store/chouse';
+import { infoName, baseInfo, chouseInfo } from './_store/infoName';
+import selectInput from '@/components/selectInput.vue';
+import textInput from '@/components/textInput.vue';
 
-//以下是一些储存数据的数据对象
+const searchCondition = reactive(
+  {} as { [key in (typeof chouseInfo)[number]]: string },
+);
+for (const key of chouse) {
+  searchCondition[key[0]] = '';
+}
 
-//储存方向的对象
-const direction = {
-  秘书处: 1,
-  设计: 2,
-  数据科学: 3,
-  'CPU&OS': 4,
-  JAVA: 5,
-  全栈: 6,
-};
-//储存信息类型的对象
-const info = {
-  number: '学号',
-  name: '姓名',
-  gender: '性别',
-  grade: '期数',
-  direction: '方向',
-  major: '专业',
-  class: '班级',
-};
-//储存期数
-const grade = ['八期', '七期', '六期', '五期'];
-//储存详情页展示信息的信息类型
-const detailInfoDescriptions = {
-  name: '姓名',
-  gender: '性别',
-  age: '年龄',
-  birthday: '生日',
-  number: '学号',
-  phone: '电话',
-  grade: '期数',
-  direction: '方向',
-  major: '专业',
-  class: '班级',
-  email: '邮箱',
+const showDetails = (index: number) => {
+  detailInfoIndex.value = index;
+  isDetailShow.value = !isDetailShow.value;
 };
 
-//一些储存信息的变量
-
-//被删除的信息暂时储存在这里
 let deleteInfo = [];
-//以下是搜索条中要获取的信息，包括学号、姓名、性别、期数、方向
-let studentID: Ref<number>;
-let studentName: Ref<string>;
-const selectGender: Ref<string> = ref('性别');
-const selectGrade: Ref<string> = ref('期数');
-const selectDirection: Ref<string> = ref('方向');
 
 //是否展示详情页
 const isDetailShow: Ref<boolean> = ref(false);
 
 //删除某人信息时将对应数据删除，并临时储存被删除的信息
-const deletePeople = (index: number) => {
-  const deletedItem = userInfo.splice(index, 1);
+const deleteUser = (index: number) => {
+  const deletedItem = searchReasult.splice(index, 1);
   deleteInfo.push(deletedItem[0]);
 };
 //详细信息页展示的信息对象
-const detailInfo = ref(userInfo[0]);
+const detailInfoIndex = ref(0);
 //展示
-const showDetails = (index: number) => {
-  isDetailShow.value = true;
-  detailInfo.value = userInfo[index];
-};
-
-//强制刷新input输入框绑定的数据
-let inputUpdate = function (this: typeof ElInput): void {
-  this.$forceUpdate();
-};
 </script>

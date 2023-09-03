@@ -8,8 +8,19 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ChangeTheme: typeof import('./../components/changeTheme.vue')['default'];
+    ElButton: typeof import('element-plus/es')['ElButton'];
+    ElDescriptions: typeof import('element-plus/es')['ElDescriptions'];
+    ElDescriptionsItem: typeof import('element-plus/es')['ElDescriptionsItem'];
+    ElIcon: typeof import('element-plus/es')['ElIcon'];
+    ElOption: typeof import('element-plus/es')['ElOption'];
+    ElSelect: typeof import('element-plus/es')['ElSelect'];
+    ElTable: typeof import('element-plus/es')['ElTable'];
+    ElTableColumn: typeof import('element-plus/es')['ElTableColumn'];
     Prompt: typeof import('./../components/prompt.vue')['default'];
     RouterLink: typeof import('vue-router')['RouterLink'];
     RouterView: typeof import('vue-router')['RouterView'];
+    SelectInput: typeof import('./../components/selectInput.vue')['default'];
+    TextInput: typeof import('./../components/textInput.vue')['default'];
+    V: typeof import('./../components/v.vue')['default'];
   }
 }

@@ -4,6 +4,7 @@
 .textInput {
   width: 200px;
   height: 28px;
+  flex: 0 1 auto;
 
   .input {
     width: auto;
@@ -16,25 +17,26 @@
       width: 60px;
       height: 100%;
       text-align: center;
-      color: var(--color-showy);
-      background-color: var(--color-main);
+      color: var(--color-primary);
+      background-color: var(--color-showy);
       border-radius: 4px 0 0 4px;
       font-weight: 500;
       line-height: 28px;
     }
 
     .name:hover {
-      background-color: var(--color-minor);
+      background-color: var(--color-medium);
     }
 
     input {
       padding: 8px;
-      min-width: 0;
+      width: calc(100% - 60px);
+      min-width: 60px;
       height: 100%;
       color: var(--color-showy);
       background-color: var(--color-primary);
       border: 0;
-      border: var(--color-main) solid 1px;
+      border: var(--color-showy) solid 1px;
       border-radius: 0 4px 4px 0;
       outline: 0;
       flex: 1 1 auto;
@@ -42,11 +44,11 @@
     }
 
     input:hover {
-      border: var(--color-minor) solid 1px;
+      border: var(--color-medium) solid 1px;
     }
 
     input::placeholder {
-      color: var(--color-minor);
+      color: var(--color-showy);
     }
   }
 
@@ -84,8 +86,9 @@
 </template>
 
 <script lang="ts" setup>
-import { textInputPropsType } from '../_type/status';
+import { textInputPropsType } from '../types/myComponent';
 const props = defineProps<textInputPropsType>();
+const emit = defineEmits(['update']);
 const value = ref('');
 const reason = ref('');
 const verifyValue = () => {
@@ -93,7 +96,7 @@ const verifyValue = () => {
     const verifyResult = verify(value.value);
     if (verifyResult.reasult) {
       reason.value = '';
-      value.value = verifyResult.value;
+      emit('update', verifyResult.value);
     } else {
       reason.value = verifyResult.value;
       break;
