@@ -430,5 +430,5 @@ const info = reactive([
     birthday: '2004.06.25',
     age: '19',
   },
-]) as { [key in userInfo[number]]: string }[];
+]) as { [key in (typeof userInfo)[number]]: string }[];
 export default info;

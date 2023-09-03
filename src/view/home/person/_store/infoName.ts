@@ -1,6 +1,6 @@
 import { userInfo } from '@/types/userInfo';
 
-export const infoName: { [key in userInfo[number]]: string } = {
+export const infoName: { [key in (typeof userInfo)[number]]: string } = {
   name: '姓名',
   gender: '性别',
   age: '年龄',
@@ -14,7 +14,7 @@ export const infoName: { [key in userInfo[number]]: string } = {
   email: '邮箱',
 };
 
-export const baseInfo: Array<userInfo[number]> = [
+export const baseInfo: Array<(typeof userInfo)[number]> = [
   'name',
   'gender',
   'grade',
@@ -24,7 +24,7 @@ export const baseInfo: Array<userInfo[number]> = [
   'class',
 ];
 
-export const chouseInfo: Array<userInfo[number]> = [
+export const chouseInfo: Array<(typeof userInfo)[number]> = [
   'name',
   'gender',
   'number',

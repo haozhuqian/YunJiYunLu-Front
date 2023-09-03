@@ -1,4 +1,4 @@
-export type userInfo = [
+export const userInfo = [
   'name',
   'gender',
   'age',
