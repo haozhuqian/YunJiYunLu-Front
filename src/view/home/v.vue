@@ -14,7 +14,7 @@
     width: 100%;
     height: 40px;
     background-color: var(--color-primary);
-    border-bottom: var(--color-main) 2px solid;
+    border-bottom: var(--color-showy) 2px solid;
 
     .button {
       padding: 0 10px;
@@ -29,7 +29,6 @@
       padding: 0 10px;
       height: 40px;
       font-size: 14px;
-      background-color: transparent;
       line-height: 40px;
       font-weight: 900;
     }
@@ -55,7 +54,7 @@
       max-width: 200px;
       height: 100%;
       background-color: var(--color-primary);
-      border-right: 2px var(--color-main) solid;
+      border-right: 2px var(--color-showy) solid;
       transition: left 0.5s ease-in-out;
       flex-direction: column;
 
@@ -66,13 +65,14 @@
         font-weight: 600;
         text-align: center;
         text-decoration: none;
-        color: var(--color-showy);
+        color: var(--color-primary);
         border-bottom: 2px var(--color-primary) solid;
-        background: var(--color-main);
+        background: var(--color-medium);
         line-height: 32px;
       }
 
       a:hover {
+        color: var(--color-least);
         background: var(--color-minor);
       }
 
@@ -157,7 +157,7 @@ const isNarrow = ref(false);
 const isOpen = ref(false);
 const { width } = useSize();
 watchEffect(() => {
-  isNarrow.value = width.value < 600;
+  isNarrow.value = width.value < 1000;
 });
 
 //退出登录，初始化用户信息

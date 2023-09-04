@@ -59,15 +59,8 @@
 </template>
 
 <script lang="ts" setup>
-import { status, times } from '../_type/status';
-const props = defineProps<{
-  time: times;
-  state: status;
-  name: string;
-  x: number;
-  y: number;
-  checked: boolean;
-}>();
+import { status, times, contentType } from '../_type/status';
+const props = defineProps<contentType>();
 
 const statusNames: { [key in status]: string } = {
   [status.leave]: '请假',

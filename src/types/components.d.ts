@@ -21,8 +21,11 @@ declare module 'vue' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn'];
     ElTabPane: typeof import('element-plus/es')['ElTabPane'];
     ElTabs: typeof import('element-plus/es')['ElTabs'];
-    ElTag: typeof import('element-plus/es')['ElTag'];
+    Prompt: typeof import('./../components/prompt.vue')['default'];
     RouterLink: typeof import('vue-router')['RouterLink'];
     RouterView: typeof import('vue-router')['RouterView'];
+    SelectInput: typeof import('./../components/selectInput.vue')['default'];
+    TextInput: typeof import('./../components/textInput.vue')['default'];
+    V: typeof import('./../components/v.vue')['default'];
   }
 }
