@@ -53,6 +53,7 @@
 .messageShowBox {
   position: relative;
   z-index: 10;
+  overflow: auto;
   padding: 10px;
   margin-left: 30%;
   width: 40%;

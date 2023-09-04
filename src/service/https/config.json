@@ -2,12 +2,12 @@
   "record": {
     "hosts": [
       "localhost",
-      "192.168.68.214",
+      "192.168.1.7",
       "127.0.0.1"
     ],
     "hash": {
-      "key": "b68c403ca65270c937f6e21476e0385e6374747d0dd8baee5a5c54ea9df658be",
-      "cert": "8949c503854e04b83fe74b72d125ad05724c3aef26225a2bfe578b07cae8ec47"
+      "key": "5b2a97414ef604ac7e5484b5f7c8585e02bec870af690c008d70e319ad1a3084",
+      "cert": "b9d19beb1ee313ee0c22b1524caefbc9f8558f4ec424bd72301018a4ab2e2620"
     }
   },
   "configFilePath": "D:\\git-base\\YunJiYunLu-Front\\src\\service\\https\\config.json"
