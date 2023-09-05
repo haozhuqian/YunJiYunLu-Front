@@ -114,7 +114,7 @@
       type="primary"
       class="login-btn"
       size="large"
-      @click="http.arrange.groupGet().then((res) => console.log(res))"
+      @click="http.arrange.groupGet().then((res: any) => console.log(res))"
       >测试</el-button
     >
   </div>

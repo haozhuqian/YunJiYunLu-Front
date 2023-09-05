@@ -49,8 +49,8 @@ import searchReasult from './_store/searchReasult';
 import { userInfo } from '@/types/userInfo';
 import { infoName } from './_store/infoName';
 import getExcel from '@/utils/getExcel';
-import selectInput from '@/components/selectInput.vue';
-import textInput from '@/components/textInput.vue';
+import selectInput from './_com/selectInput.vue';
+import textInput from './_com/textInput.vue';
 
 const searchCondition = reactive(
   {} as { [key in (typeof chouseInfo)[number]]: string },

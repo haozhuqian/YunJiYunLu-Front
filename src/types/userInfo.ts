@@ -10,4 +10,4 @@ export const userInfo = [
   'major',
   'class',
   'email',
-];
+] as const;

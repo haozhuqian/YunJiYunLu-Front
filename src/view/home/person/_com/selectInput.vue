@@ -117,7 +117,7 @@
 </template>
 
 <script lang="ts" setup>
-import { selectInputPropsType } from '../types/myComponent';
+import { selectInputPropsType } from '../_type/comProps';
 const props = defineProps<selectInputPropsType>();
 const emit = defineEmits(['update']);
 

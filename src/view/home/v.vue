@@ -94,6 +94,7 @@
     }
 
     .home-content {
+      position: relative;
       flex-grow: 1;
     }
   }

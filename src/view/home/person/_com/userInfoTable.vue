@@ -3,7 +3,7 @@
 
 .userInfoTable {
   position: relative;
-  overflow: scroll;
+  overflow: hidden;
   margin: 20px 0;
   width: 90%;
   min-width: 920px;
@@ -36,8 +36,9 @@
 
   .userInfoList {
     position: absolute;
+    overflow-x: hidden;
+    overflow-y: overlay;
     inset: 28px 0 0;
-    overflow: scroll;
 
     .userInfos {
       @include flex(column, space-between);
@@ -99,6 +100,10 @@
         border-bottom: var(--color-showy) 1px solid;
       }
     }
+  }
+
+  .userInfoList::-webkit-scrollbar {
+    width: 0;
   }
 }
 </style>

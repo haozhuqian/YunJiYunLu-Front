@@ -86,21 +86,19 @@
 </template>
 
 <script lang="ts" setup>
-import { textInputPropsType } from '../types/myComponent';
+import verifyString from '@/utils/verifyString';
+import { textInputPropsType } from '../_type/comProps';
 const props = defineProps<textInputPropsType>();
 const emit = defineEmits(['update']);
 const value = ref('');
 const reason = ref('');
 const verifyValue = () => {
-  for (let verify of props.verifys) {
-    const verifyResult = verify(value.value);
-    if (verifyResult.reasult) {
-      reason.value = '';
-      emit('update', verifyResult.value);
-    } else {
-      reason.value = verifyResult.value;
-      break;
-    }
+  const reasult = verifyString(value.value, props.verifys);
+  if (reasult.reasult) {
+    reason.value = '';
+    emit('update', reasult.value);
+  } else {
+    reason.value = reasult.value;
   }
 };
 </script>
