@@ -110,6 +110,13 @@
       @click="goHome(role.Total)"
       >总号</el-button
     >
+    <br /><el-button
+      type="primary"
+      class="login-btn"
+      size="large"
+      @click="http.arrange.groupGet().then((res) => console.log(res))"
+      >测试</el-button
+    >
   </div>
 </template>
 
@@ -117,6 +124,7 @@
 import login from './Login.vue';
 import register from './Register.vue';
 import forget from './Forget.vue';
+import http from '@/service/http';
 import { role } from '@/types/route';
 import { useUserStore } from '@/store/user';
 

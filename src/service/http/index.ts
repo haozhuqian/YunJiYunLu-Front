@@ -14,11 +14,16 @@ Object.keys(ms).forEach((item) => {
   const moduleName = names.pop()?.slice(0, -3) as string;
   //迭代地根据文件结构嵌套模块对象
   const lowest = names.reduce<IModule>((upper, name) => {
-    return upper[name] ? upper[name] : (upper[name] = {});
+    console.log(names);
+    console.log(name);
+    if (upper[name]) {
+      console.log(Object.isExtensible(upper[name]));
+      return upper[name];
+    } else {
+      return { aaa: {} };
+    }
   }, modules);
   //将模块添加到对应文件夹对象下
   lowest[moduleName] = ms[item];
 });
-console.log(modules);
-
 export default modules;
