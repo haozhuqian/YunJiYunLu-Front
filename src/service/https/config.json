@@ -2,13 +2,13 @@
   "record": {
     "hosts": [
       "localhost",
-      "101.7.171.114",
+      "172.16.8.6",
       "127.0.0.1"
     ],
     "hash": {
-      "key": "23d1e67cb3958f70c60d9b3cb2005afa83b3fda6b5b024b6b519b6ed434e6ce6",
-      "cert": "055e66ebe2d792fee43f01f8ec15cd92aaf949ca9763ea75114d9a38cf63b99e"
+      "key": "d0091d5aba0b7ec6c5468b572534f5bfafa2617ad7f47dcd1a28b06554360bf5",
+      "cert": "b6670e275ee78d61e88f84d1ef719fc15cd73ebf4b11ac14314abfcde457514a"
     }
   },
-  "configFilePath": "D:\\yun\\goodMoney\\YunJiYunLu-Front\\src\\service\\https\\config.json"
+  "configFilePath": "D:\\git-base\\YunJiYunLu-Front\\src\\service\\https\\config.json"
 }

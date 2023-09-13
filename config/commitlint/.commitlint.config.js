@@ -8,7 +8,7 @@ module.exports = {
     'body-leading-blank': [2, 'always'],
     'footer-leading-blank': [2, 'always'],
     // 信息最大长度
-    'header-max-length': [2, 'always', 72],
+    'header-max-length': [2, 'always', 100],
     'body-max-line-length': [2, 'always', 500],
     // 信息不能未空
     'subject-empty': [2, 'never'],
