@@ -9,6 +9,7 @@ module.exports = {
     'footer-leading-blank': [2, 'always'],
     // 信息最大长度
     'header-max-length': [2, 'always', 72],
+    'body-max-line-length': [2, 'always', 500],
     // 信息不能未空
     'subject-empty': [2, 'never'],
     // 信息类型不能未空

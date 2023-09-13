@@ -8,18 +8,16 @@
   text-align: right;
 
   .text {
-    padding: 8px;
     width: 30%;
     min-width: 160px;
     max-width: 200px;
     height: 100%;
+    font-size: 16px;
     text-align: right;
-    color: var(--color-showy);
-    background-color: var(--color-primary);
+    background-color: transparent;
     border: 0;
-    border: var(--color-showy) solid 1px;
-    border-radius: 0 4px 4px 0;
-    outline: 0;
+    border-radius: 4px;
+    outline: var(--color-showy) solid 1px;
     flex: 1 1 auto;
     caret-color: var(--color-showy);
 
@@ -27,8 +25,12 @@
       border: var(--color-medium) solid 1px;
     }
 
-    &::placeholder {
-      color: var(--color-showy);
+    &:read-only {
+      outline: 0;
+
+      &:hover {
+        border: 0;
+      }
     }
   }
 

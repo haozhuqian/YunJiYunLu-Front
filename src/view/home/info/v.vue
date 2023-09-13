@@ -10,11 +10,12 @@
   max-width: 500px;
   font-size: 16px;
 
-  @include flex(column, space-around, start);
+  @include flex(column, space-around, center);
 
   .info {
     width: 100%;
-    flex: 1 1 auto;
+    height: 28px;
+    line-height: 28px;
 
     @include flex(row);
   }
@@ -58,8 +59,9 @@
 
 <template>
   <div class="info-list">
+    <!-- 用户信息 -->
     <div class="info" v-for="infoName in userInfo" :key="infoName">
-      {{ infoList[infoName].name }}:
+      <div class="name">{{ infoList[infoName].name }}:</div>
       <div class="readonly" v-if="'readonly' in infoList[infoName]">
         {{ user.info[infoName] }}
       </div>
@@ -71,9 +73,11 @@
         @update="(newValue) => (newInfo[infoName] = newValue)"
       />
     </div>
+    <!-- 头像 -->
     <div class="avatar">
       <img src="../../../assets/imgs/logo/avatar.jpg" alt="头像" />
     </div>
+    <!-- 修改按钮 -->
     <div class="controler">
       <button @click="changeInfo">{{ isChangeing ? '确定' : '修改' }}</button>
       <button @click="unChangeInfo" v-if="isChangeing">取消</button>
@@ -106,6 +110,7 @@ for (const info of userInfo) {
 }
 let oldInfo: any = {};
 let newInfo: any = {};
+//修改信息
 const changeInfo = () => {
   isChangeing.value = !isChangeing.value;
   if (!isChangeing.value) {
@@ -116,6 +121,7 @@ const changeInfo = () => {
     oldInfo = { ...user.info };
   }
 };
+//取消修改
 const unChangeInfo = () => {
   isChangeing.value = !isChangeing.value;
   user.$patch({
