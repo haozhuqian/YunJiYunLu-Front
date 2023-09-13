@@ -114,7 +114,7 @@
       type="primary"
       class="login-btn"
       size="large"
-      @click="http.arrange.groupGet().then((res: any) => console.log(res))"
+      @click="http.login.login('yd2022').then((res: any) => console.log(res))"
       >测试</el-button
     >
   </div>
@@ -140,9 +140,6 @@ enum tabNames {
 const activeTab = ref(tabNames.login);
 
 const makeSure = () => {
-  console.log('makeSure');
-  console.log(activeTab.value);
-
   if (activeTab.value === 'login') {
     loginRef.value?.loginAction();
   } else if (activeTab.value === 'register') {

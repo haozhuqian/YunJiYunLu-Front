@@ -1,4 +1,4 @@
-import { searchInputPropsType } from '../_type/status';
+import { textInputPropsType, selectInputPropsType } from '../_type/comProps';
 import { chouseInfo } from './infoName';
 export default [
   [
@@ -47,4 +47,7 @@ export default [
       option: ['设计', '秘书处', '全栈', 'Java', 'AI', 'CPU&OS', '适应期'],
     },
   ],
-] as [name: (typeof chouseInfo)[number], props: searchInputPropsType][];
+] as [
+  name: (typeof chouseInfo)[number],
+  props: textInputPropsType | selectInputPropsType,
+][];

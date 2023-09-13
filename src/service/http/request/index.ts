@@ -6,10 +6,8 @@ import {
   type InstanceAxiosConfig,
 } from './type';
 
-//封装第三方库，便于后期维护时切换第三方库，
 export default class Request {
   instance: AxiosInstance;
-
   constructor(config: DefaultAxiosConfig) {
     this.instance = axios.create(config);
 
@@ -22,21 +20,19 @@ export default class Request {
       config.interceptors?.responseSuccess,
       config.interceptors?.responseFailure,
     );
-
     //可以添加默认拦截器
     this.instance.interceptors.request.use(
-      (config) => {
-        return config;
-      },
-      (err) => {
-        return err;
-      },
+      (config) => config,
+      (err) => err,
     );
     this.instance.interceptors.response.use(
-      (config) => {
-        return config;
-      },
+      (config) => config,
       (err) => {
+        if (axios.isCancel(err)) {
+          console.log('请求已取消:', err.message);
+        } else {
+          console.log('请求发生错误:', err.message);
+        }
         return err;
       },
     );
@@ -44,7 +40,7 @@ export default class Request {
   //用泛型T约束返回的data类型
   request<T = any>(config: InstanceAxiosConfig) {
     //添加取消请求控制
-    const controller = new AbortController();
+    const source = axios.CancelToken.source();
 
     //单次请求的成功拦截
     if (config.interceptors?.requestSuccess) {
@@ -53,7 +49,7 @@ export default class Request {
     return new RePromise<T>(
       (resolve, reject) => {
         //添加取消请求控制
-        config.signal = controller.signal;
+        config.cancelToken = source.token;
         this.instance
           .request<T>(config)
           .then((res) => {
@@ -71,14 +67,9 @@ export default class Request {
             reject(err);
           });
       },
-      () => {
-        if (!controller.signal.aborted) {
-          controller.abort();
-        }
-      },
+      (reason) => source.cancel(reason),
     );
   }
-
   get<P, T = any>(config: InstanceAxiosConfig, params?: P) {
     config.params = params ? params : config.params;
     return this.request<T>({ ...config, method: 'GET' });

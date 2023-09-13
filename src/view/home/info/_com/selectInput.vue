@@ -2,41 +2,47 @@
 @import '@/style/tool';
 
 .selectInput {
-  flex-grow: 1;
+  position: relative;
   height: 28px;
+  text-align: right;
+  flex-grow: 1;
 
-  .input {
-    width: auto;
+  .text {
+    width: 30%;
+    min-width: 160px;
+    max-width: 200px;
     height: 100%;
-    border-radius: 5px;
+    font-size: 16px;
+    text-align: right;
+    background-color: transparent;
+    border-radius: 4px 0 0 4px;
+    outline: 0;
+    line-height: 16px;
+    flex: 1 1 auto;
 
-    @include flex(row, space-between, center);
-
-    input {
-      padding: 8px;
-      max-width: 120px;
-      height: 100%;
-      text-align: right;
-      color: var(--color-showy);
-      background-color: var(--color-primary);
+    &:read-only {
       border: 0;
-      border: var(--color-showy) solid 1px;
-      border-radius: 4px 0 0 4px;
-      outline: 0;
-      flex: 1 1 auto;
+      user-select: none;
     }
+  }
 
-    input::placeholder {
-      color: var(--color-minor);
+  .selectText {
+    &:read-only {
+      border: var(--color-showy) solid 1px;
     }
   }
 
   .options {
     @include flex(column);
 
-    position: relative;
+    position: absolute;
+    right: 0;
     z-index: 1000;
     overflow: hidden;
+    width: 30%;
+    min-width: 160px;
+    max-width: 200px;
+    height: 100%;
     height: 0;
     background-color: var(--color-showy);
     border-radius: 4px;
@@ -44,31 +50,33 @@
 
     .option {
       height: 18px;
+      line-height: 18px;
       text-align: center;
       color: var(--color-primary);
-      line-height: 18px;
-    }
 
-    .option:hover {
-      color: var(--color-primary);
-      background-color: var(--color-showy);
+      &:hover {
+        background-color: var(--color-medium);
+      }
     }
   }
 
   .showOptions {
-    height: v-bind('(props.option.length+1) * 18 + "px"');
+    height: v-bind('(props.option.length + 1) * 18 + "px"');
   }
 }
 </style>
 
 <template>
   <div class="selectInput" tabindex="1" @blur="showOption = false">
-    <div
-      class="input"
+    <input
+      class="text"
+      :class="{ selectText: props.isChanged }"
+      type="text"
+      readonly
+      v-model="value"
+      @blur="showOption = false"
       @click="showOption = props.isChanged ? !showOption : false"
-    >
-      <input type="text" readonly v-model="value" @blur="showOption = false" />
-    </div>
+    />
     <div class="options" :class="{ showOptions: showOption }">
       <div class="option" @click="check(props.default)">不更改</div>
       <div

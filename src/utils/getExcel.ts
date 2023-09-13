@@ -1,7 +1,7 @@
 import { Workbook, type Column } from 'exceljs';
 export default async (
   fileName: string,
-  keys: string[],
+  keys: readonly string[],
   tHead: { [key in (typeof keys)[number]]: string },
   rows: { [key in (typeof keys)[number]]: any }[],
 ) => {
