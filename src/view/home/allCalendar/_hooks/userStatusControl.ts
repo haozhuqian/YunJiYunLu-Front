@@ -41,12 +41,12 @@ const rightMap: {
 
 //选中的用户数组，根据选中的用户不同，插入不同数组
 const checkedList: {
-  [key in status]: Ref<contentType>[];
+  [key in status]: Set<Ref<contentType>>;
 } = reactive({
-  [status.leave]: [],
-  [status.signIn]: [],
-  [status.signOut]: [],
-  [status.unsign]: [],
+  [status.leave]: new Set<Ref<contentType>>(),
+  [status.signIn]: new Set<Ref<contentType>>(),
+  [status.signOut]: new Set<Ref<contentType>>(),
+  [status.unsign]: new Set<Ref<contentType>>(),
 });
 //事件匹配到正确和错误选项后的行为
 const baseControllerMap: baseControllers = {
@@ -54,11 +54,12 @@ const baseControllerMap: baseControllers = {
   //第一个参数为事件的类型，第二个参数为匹配到的错误用户状态
   err(event: eventType, type: status) {
     //如果这个状态的没有选中任何人，直接返回空字符串
-    if (checkedList[type].length === 0) return '';
+    if (checkedList[type].size === 0) return '';
     //否则遍历选中的所有这种状态用户，将名字用、隔开拼接成字符串
-    const errString = checkedList[type]
-      .map((checked) => checked.value.name + checked.value.x + checked.value.y)
-      .join('、');
+    let errString = '';
+    for (const item of checkedList[type]) {
+      errString += item.value.name + item.value.x + item.value.y + '、';
+    }
     //将名字字符串拼接后缀，并返回。大致格式为（谁谁谁、谁谁、谁谁谁已签退不能签到）之类的
     return errString + `${statusName[type]}不能${eventName[event]}`;
   },
@@ -79,7 +80,7 @@ getEnum<eventType>(eventType).forEach((event) => {
   eventControllers[event] = () => {
     //如果没有选中任何用户，进行提示
     if (
-      getEnum<status>(status).every((statu) => checkedList[statu].length === 0)
+      getEnum<status>(status).every((statu) => checkedList[statu].size === 0)
     ) {
       alert('你没有选中任何东西');
       return;
@@ -101,7 +102,10 @@ getEnum<eventType>(eventType).forEach((event) => {
       });
     //清空选中的用户
     getEnum<status>(status).forEach((type) => {
-      checkedList[type].splice(0, Infinity);
+      for (const item of checkedList[type]) {
+        item.value.isCheck = false;
+      }
+      checkedList[type].clear();
     });
     //清空错误提示词数组中的空字符串
     unqualified = unqualified.filter((str) => str);

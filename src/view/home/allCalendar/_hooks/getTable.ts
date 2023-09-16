@@ -16,9 +16,17 @@ function generateRandomString(): string {
   return result;
 }
 //第一行填充的内容
-const row = ['java', 'ai', 'fullstack', 'cpu'];
+const row = [
+  '今日全体研学日程',
+  '设计',
+  '秘书处',
+  'fullstack',
+  'java',
+  'cpu',
+  'ai',
+];
 //第一列填充的内容
-const column = ['1', '2', '3', '1', '1'];
+const column = ['1', '2', '3', '4'];
 //表格的宽
 const width = row.length;
 //表格的高
@@ -32,11 +40,12 @@ for (let i = 0; i < width; i++) {
   table[i] = [];
   for (let j = 1; j < heigh; j++) {
     table[i][j] = { name: '', content: [] };
-    for (let k = 0; k < heigh; k++) {
+    for (let k = 0; k < 18; k++) {
       table[i][j].content.push(
         ref({
           name: generateRandomString(), //随机的用户名
           status: randomEnum(), //随机的用户状态
+          isCheck: false, //是否被选中
           x: i,
           y: j,
           z: k,
@@ -47,10 +56,34 @@ for (let i = 0; i < width; i++) {
 }
 // 填充第一行与第一列的内容
 row.forEach((row, index) => {
-  table[index][0] = { name: row, content: [] };
+  table[index][0] = {
+    name: row,
+    content: [
+      ref({
+        name: '', //随机的用户名
+        status: 0, //随机的用户状态
+        isCheck: false, //是否被选中
+        x: index,
+        y: 0,
+        z: 0,
+      }),
+    ],
+  };
 });
 column.forEach((column, index) => {
-  table[0][index + 1] = { name: column, content: [] };
+  table[0][index + 1] = {
+    name: column,
+    content: [
+      ref({
+        name: '', //随机的用户名
+        status: 0, //随机的用户状态
+        isCheck: false, //是否被选中
+        x: 0,
+        y: index + 1,
+        z: 0,
+      }),
+    ],
+  };
 });
 
 export { table };

@@ -58,7 +58,12 @@
       rightSideTransition: x > width / 2 && !(width < 600),
     }"
   >
-    <div class="name" v-for="thing in menu" @click="thing[1]" :key="thing[0]">
+    <div
+      class="name"
+      v-for="thing in menu"
+      @click.stop="thing[1]"
+      :key="thing[0]"
+    >
       {{ thing[0] }}
     </div>
   </div>

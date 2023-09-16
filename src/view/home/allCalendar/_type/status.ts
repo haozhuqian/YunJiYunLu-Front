@@ -16,6 +16,7 @@ export type contentType = {
   x: number;
   y: number;
   z: number;
+  isCheck: boolean;
   name: string;
   status: status;
 };
