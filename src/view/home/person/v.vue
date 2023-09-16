@@ -17,8 +17,6 @@
     min-width: 920px;
 
     button {
-      margin: 0 5px;
-      width: 10%;
       height: 100%;
       color: var(--color-primary);
       background-color: var(--color-showy);
