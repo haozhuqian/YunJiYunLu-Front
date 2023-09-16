@@ -1,4 +1,4 @@
-import request from '@/service/http/request';
+import request from '@/service/http';
 export const login = (data: { password: string; userIdOrPhone: string }) =>
   request.post({ url: '/user/login' }, data);
 export const logout = () => request.post({ url: '/user/logout' });

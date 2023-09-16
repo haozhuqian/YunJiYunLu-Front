@@ -1,4 +1,4 @@
-import request from '@/service/http/request';
+import request from '@/service/http';
 
 //修改空课信息
 export const classUpdate = (data: any) =>

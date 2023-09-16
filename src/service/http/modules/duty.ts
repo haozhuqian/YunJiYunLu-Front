@@ -1,4 +1,4 @@
-import request from '@/service/http/request';
+import request from '@/service/http';
 
 //极创客今日排班
 export const classJi = () => request.get({ url: '/duty/todayduty' });

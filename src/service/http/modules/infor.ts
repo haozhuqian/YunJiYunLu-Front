@@ -1,4 +1,4 @@
-import request from '@/service/http/request';
+import request from '@/service/http';
 
 //饼状图数据获取 & 所有签到学生信息获取
 export const getAllStudents = (data: string) =>

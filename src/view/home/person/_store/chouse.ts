@@ -2,7 +2,7 @@ import { textInputPropsType, selectInputPropsType } from '../_type/comProps';
 import { chouseInfo } from './infoName';
 export default [
   [
-    'name',
+    'user_name',
     {
       name: '姓名',
       verifys: [
@@ -14,7 +14,7 @@ export default [
     },
   ],
   [
-    'number',
+    'user_id',
     {
       name: '学号',
       verifys: [
@@ -27,21 +27,21 @@ export default [
     },
   ],
   [
-    'gender',
+    'user_gender',
     {
       name: '性别',
       option: ['男', '女'],
     },
   ],
   [
-    'grade',
+    'user_period',
     {
       name: '期数',
       option: ['五期', '六期', '七期', '八期'],
     },
   ],
   [
-    'direction',
+    'user_group',
     {
       name: '方向',
       option: ['设计', '秘书处', '全栈', 'Java', 'AI', 'CPU&OS', '适应期'],

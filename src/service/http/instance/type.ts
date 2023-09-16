@@ -1,33 +1,3 @@
-import {
-  AxiosRequestConfig,
-  AxiosResponse,
-  InternalAxiosRequestConfig,
-} from 'axios';
-
-//辅助拦截器对象的函数类型
-type RFn<T> = (arg: T) => T;
-
-// 拦截器对象
-interface Interceptors {
-  requestSuccess?: RFn<InternalAxiosRequestConfig>;
-  requestFailure?: RFn<any>;
-  responseSuccess?: RFn<AxiosResponse>;
-  responseFailure?: RFn<any>;
-}
-//添加了可选的拦截器对象的axios配置对象类型
-export interface DefaultAxiosConfig extends AxiosRequestConfig {
-  interceptors?: Interceptors;
-}
-//axios请求可单独添加的拦截器对象类型
-interface RequestInterceptors {
-  requestSuccess?: RFn<AxiosRequestConfig>;
-  responseSuccess?: RFn<AxiosResponse>;
-  responseFailure?: RFn<any>;
-}
-//添加了可选的axios请求拦截器对象的请求配置对象类型
-export interface InstanceAxiosConfig extends AxiosRequestConfig {
-  interceptors?: RequestInterceptors;
-}
 //promise的resolve函数类型
 type ResolveFn<T> = (value: T | PromiseLike<T>) => void;
 //promise的reject函数类型
@@ -59,7 +29,3 @@ export class RePromise<T = any> extends Promise<T> {
   }
   abort: (reason?: string) => void;
 }
-export type RequestFn = <D, T = any>(
-  config: InstanceAxiosConfig,
-  data?: D,
-) => RePromise<T>;

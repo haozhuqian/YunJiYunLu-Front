@@ -1,4 +1,4 @@
-import request from '@/service/http/request';
+import request from '@/service/http';
 //签到
 export const signIn = (data: any) =>
   request.post({ url: '/arrange/sign/in' }, data);

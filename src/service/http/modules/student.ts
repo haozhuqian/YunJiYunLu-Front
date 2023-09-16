@@ -1,4 +1,4 @@
-import request from '@/service/http/request';
+import request from '@/service/http';
 export const addToGroup = (data: any) =>
   request.post({ url: '/student/addToGroup' }, data);
 export const changeGroup = (data: any) =>

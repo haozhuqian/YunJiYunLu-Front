@@ -1,4 +1,4 @@
-import request from '@/service/http/request';
+import request from '@/service/http';
 
 //设置会议
 export const setConference = () => request.get({ url: '/allSign/all/copy' });

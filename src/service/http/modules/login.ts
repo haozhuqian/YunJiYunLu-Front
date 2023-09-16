@@ -1,4 +1,4 @@
-import request from '@/service/http/request';
+import request from '@/service/http';
 
 //后台管理系统登录
 export const login = (data: any) => request.post({ url: '/user/login' }, data);

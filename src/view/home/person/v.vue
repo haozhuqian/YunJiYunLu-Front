@@ -15,6 +15,22 @@
     margin-top: 20px;
     width: 90%;
     min-width: 920px;
+
+    button {
+      margin: 0 5px;
+      width: 10%;
+      height: 100%;
+      color: var(--color-primary);
+      background-color: var(--color-showy);
+      border: none;
+      border-radius: 6px;
+      transition: background-color 0.3s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--color-minor);
+      }
+    }
   }
 }
 </style>

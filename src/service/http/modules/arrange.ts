@@ -1,4 +1,4 @@
-import request from '@/service/http/request';
+import request from '@/service/http';
 
 type groupInfo = { groupId: number; place: string };
 

@@ -1,4 +1,4 @@
-import request from '@/service/http/request';
+import request from '@/service/http';
 
 //请求今日晚自习安排
 export const showNightStudent = (data: any) =>
