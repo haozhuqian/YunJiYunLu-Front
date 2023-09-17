@@ -62,23 +62,30 @@
       <button class="login-btn" @click="goHome(role.Admin)">管理</button>
       <button class="login-btn" @click="goHome(role.Dapartment)">部门</button>
       <button class="login-btn" @click="goHome(role.Total)">总号</button>
-      <button
-        class="login-btn"
-        @click="http.login.login('yd2022').then((res: any) => console.log(res))"
-      >
-        测试
-      </button>
+      <button class="login-btn" @click="test">测试</button>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import http from '@/service/http';
+// import http from '@/service/http';
+import showMessageBox from '@/components/prompt';
 import { role } from '@/types/route';
 import { textInputPropsType } from './_type/comProps';
 import changeTheme from '@/components/changeTheme.vue';
 import { useUserStore } from '@/store/user';
 import textInput from './_com/textInput.vue';
+const test = () => {
+  showMessageBox({
+    title: '随便什么文本',
+  })
+    ?.then((value) => {
+      console.log(value);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 const loginInputConfig: textInputPropsType[] = [
   {

@@ -15,10 +15,10 @@ declare module 'vue' {
     ElInput: typeof import('element-plus/es')['ElInput'];
     ElTabPane: typeof import('element-plus/es')['ElTabPane'];
     ElTabs: typeof import('element-plus/es')['ElTabs'];
-    Prompt: typeof import('./../components/prompt.vue')['default'];
+    Prompt: typeof import('./../components/prompt/prompt.vue')['default'];
     RouterLink: typeof import('vue-router')['RouterLink'];
     RouterView: typeof import('vue-router')['RouterView'];
     SelectInput: typeof import('./../components/selectInput.vue')['default'];
-    TextInput: typeof import('./../components/textInput.vue')['default'];
+    TextInput: typeof import('./../components/prompt/textInput.vue')['default'];
   }
 }
