@@ -68,6 +68,7 @@
           button {
             margin: 0 5px;
             width: 30%;
+            min-width: 40px;
             height: 80%;
             color: var(--color-primary);
             background-color: var(--color-showy);

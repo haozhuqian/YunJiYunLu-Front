@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ChangeTheme: typeof import('./../components/changeTheme.vue')['default'];
+    Confirm: typeof import('./../components/confirm/confirm.vue')['default'];
     ElButton: typeof import('element-plus/es')['ElButton'];
     ElForm: typeof import('element-plus/es')['ElForm'];
     ElFormItem: typeof import('element-plus/es')['ElFormItem'];
@@ -15,6 +16,7 @@ declare module 'vue' {
     ElInput: typeof import('element-plus/es')['ElInput'];
     ElTabPane: typeof import('element-plus/es')['ElTabPane'];
     ElTabs: typeof import('element-plus/es')['ElTabs'];
+    Message: typeof import('./../components/message/message.vue')['default'];
     Prompt: typeof import('./../components/prompt/prompt.vue')['default'];
     RouterLink: typeof import('vue-router')['RouterLink'];
     RouterView: typeof import('vue-router')['RouterView'];

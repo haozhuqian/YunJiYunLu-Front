@@ -41,15 +41,15 @@
     overflow: hidden;
     height: 0;
     text-align: center;
-    color: var(--color-showy);
     transition: height 0.3s ease-in-out;
   }
 
   .showErr {
     height: 18px;
-    line-height: 16px;
-    border: 1px solid var(--color-showy);
+    color: var(--color-primary);
+    background-color: var(--color-showy);
     border-radius: 0 0 4px 4px;
+    line-height: 16px;
   }
 }
 </style>
@@ -79,11 +79,14 @@ const value = ref('');
 const reason = ref('');
 const verifyValue = () => {
   const reasult = verifyString(value.value, props.verifys);
+
   if (reasult.reasult) {
     reason.value = '';
     emit('update', reasult.value);
   } else {
     reason.value = reasult.value;
   }
+  return reasult;
 };
+defineExpose({ verifyValue });
 </script>

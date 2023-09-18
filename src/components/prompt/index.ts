@@ -1,11 +1,8 @@
 import { h, render } from 'vue';
 //需要引入弹窗组件
 import prompt from './prompt.vue';
-import { VNode } from 'vue';
 import { verifysType } from './_type';
 import cache from '@/utils/cache';
-// 单例模式
-let vnode: VNode | null = null;
 // 显示弹窗组件
 const showMessageBox = cache(
   (option: { title: string; verifys?: verifysType[] }) => {
@@ -16,17 +13,14 @@ const showMessageBox = cache(
       const options = {
         ...option,
         onClose: (message: string, isSure: boolean) => {
-          vnode = null;
           render(null, container);
           container.remove();
           showMessageBox.uncacheFn();
           return isSure ? reslove(message) : reject(message);
         },
       };
-      // 生成vnode
-      vnode = h(prompt, options);
-      // 渲染为真实dom
-      render(vnode, container);
+      // 生成vnode,渲染为真实dom
+      render(h(prompt, options), container);
       document.body.appendChild(container.firstElementChild!);
     });
   },

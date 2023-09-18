@@ -8,11 +8,18 @@
   width: calc(350px + 5%);
   height: 100%;
 
+  .column {
+    width: 0;
+    height: 24px;
+    border-left: 1px solid var(--color-least);
+    border-right: 1px solid var(--color-least);
+  }
+
   .tabs {
     padding: 24px;
-    margin: 24px 0 0;
     width: 100%;
     background-color: var(--color-minor);
+    border: 2px solid var(--color-least);
     border-radius: 6px;
 
     @include flex(column, center, center);
@@ -42,6 +49,7 @@
 <template>
   <div class="start">
     <changeTheme></changeTheme>
+    <div class="column"></div>
     <div class="tabs">
       <h1 class="title">云冀云麓</h1>
 
@@ -78,6 +86,12 @@ import textInput from './_com/textInput.vue';
 const test = () => {
   showMessageBox({
     title: '随便什么文本',
+    verifys: [
+      (value: string) =>
+        value
+          ? { reasult: true, value }
+          : { reasult: false, value: '不能为空' },
+    ],
   })
     ?.then((value) => {
       console.log(value);

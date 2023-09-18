@@ -52,53 +52,25 @@
   <div class="message-bg" @click.stop>
     <div class="message-box">
       <div class="title">{{ props.title }}</div>
-      <text-input
-        ref="inputRef"
-        @update="(newValue) => (value = newValue)"
-        :verifys="props.verifys"
-      ></text-input>
       <div class="controller">
-        <button
-          @click="
-            tryClose(() => {
-              emits('close', value, true);
-            })
-          "
-        >
-          确定
-        </button>
-        <button @click="emits('close', '', false)">取消</button>
+        <button @click="emits('close', true)">确定</button>
+        <button @click="emits('close', false)">取消</button>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import textInput from './textInput.vue';
-import message from '../message/index';
-import { verifysType } from './_type';
 // 配置外部传来的事件
 const emits = defineEmits<{
-  (e: 'close', message: string, isSure: boolean): void;
+  (e: 'close', isSure: boolean): void;
 }>();
-const inputRef = ref<InstanceType<typeof textInput>>();
-let value = '';
 const props = withDefaults(
   defineProps<{
     title: string;
-    verifys?: verifysType[];
   }>(),
   {
     title: '提示',
-    verifys: () => [],
   },
 );
-const tryClose = (Fn: () => void): void => {
-  const verify = inputRef.value!.verifyValue()!;
-  if (verify.reasult) {
-    Fn();
-  } else {
-    message(verify.value);
-  }
-};
 </script>

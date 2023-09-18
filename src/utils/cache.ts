@@ -28,8 +28,10 @@ export default function cache<T extends (...args: any[]) => any>(
     },
     uncacheFn(...args: Parameters<T> | []) {
       if (args.length === 0) {
+        //如果没有传入参数，清空缓存
         result.clear();
       } else {
+        //如果传入参数，将对应的序列化后的参数及其运行结果从缓存中删除
         const _args = JSON.stringify(args);
         result.delete(_args);
         params.splice(params.indexOf(_args), 1);
