@@ -23,7 +23,8 @@
   .avatar {
     position: absolute;
     top: 0%;
-    right: 40%;
+    right: 50%;
+    transform: translate(50%);
     width: 100px;
     height: 100px;
     background-color: var(--color-main);

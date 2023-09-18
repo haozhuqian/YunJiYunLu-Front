@@ -117,7 +117,10 @@
       <button @click="goOut" class="button">退出</button>
     </div>
     <div class="main" :class="{ narrowMain: isNarrow }">
-      <nav :class="{ narrowNav: isNarrow, openNav: isOpen && isNarrow }">
+      <nav
+        :class="{ narrowNav: isNarrow, openNav: isOpen && isNarrow }"
+        @click="isOpen = false"
+      >
         <router-link
           :to="{ name: nav.path }"
           v-for="nav in navs"

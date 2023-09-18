@@ -1,4 +1,10 @@
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@import '@/style/tool';
+
+.sign {
+  @include flex(column, center, center);
+}
+</style>
 
 <template>
   <div class="sign">

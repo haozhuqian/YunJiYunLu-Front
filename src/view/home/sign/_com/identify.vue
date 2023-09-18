@@ -1,11 +1,29 @@
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@import '@/style/tool';
+
+.identify {
+  @include flex(column, center, center);
+
+  .qrCode {
+    margin: 20px;
+    border: 2px solid var(--color-showy);
+  }
+
+  button {
+    width: 100px;
+    font-size: 16px;
+    color: var(--color-primary);
+    background-color: var(--color-showy);
+    border: 0;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+}
+</style>
 
 <template>
   <div class="identify">
-    <canvas id="canvas" ref="canvasRef"></canvas>
-    <div id="output">
-      <div>{{ outputData }}</div>
-    </div>
+    <canvas id="canvas" ref="canvasRef" class="qrCode"></canvas>
     <button @click="identify">{{ IsOpenCamera ? '关闭相机' : '扫码' }}</button>
   </div>
 </template>
@@ -14,6 +32,7 @@
 //识别静态二维码的库
 import jsQR from 'jsqr';
 import { QRCode } from 'jsqr';
+import confirm from '@/components/confirm/index';
 
 type Point = { x: number; y: number };
 type Area = {
@@ -23,7 +42,6 @@ type Area = {
   bottomLeftCorner: Point;
 };
 
-const outputData = ref('这里');
 const IsOpenCamera = ref(false);
 const canvasRef = ref<HTMLCanvasElement>();
 let canvasContext: CanvasRenderingContext2D;
@@ -146,8 +164,8 @@ const tick = (video: HTMLVideoElement, canvas: CanvasRenderingContext2D) => {
       } else {
         //否则关闭相机
         drawBoder(canvas, code.location, 'yellow');
-        outputData.value = code.data;
-        // closeCamera(canvas);
+        confirm(code.data);
+        closeCamera(canvas);
       }
     }
   }

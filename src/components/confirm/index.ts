@@ -1,6 +1,6 @@
 import { h, render } from 'vue';
 //需要引入弹窗组件
-import prompt from './prompt.vue';
+import confirm from './confirm.vue';
 import cache from '@/utils/cache';
 // 显示弹窗组件
 const showMessageBox = cache((title: string) => {
@@ -19,7 +19,7 @@ const showMessageBox = cache((title: string) => {
       },
     };
     // 渲染为真实dom
-    render(h(prompt, options), container);
+    render(h(confirm, options), container);
     document.body.appendChild(container.firstElementChild!);
   });
 });
