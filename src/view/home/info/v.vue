@@ -24,35 +24,41 @@
     position: absolute;
     top: 0%;
     right: 40%;
-    width: 20%;
-    height: 20%;
+    width: 100px;
+    height: 100px;
+    background-color: var(--color-main);
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
 
-    img {
-      border-radius: 50%;
-      transition: transform 0.3s ease-in-out;
+    @include flex(row, center, center);
 
-      &:hover {
-        transform: rotate(1turn);
-      }
+    .word {
+      height: 50px;
+      font-size: 50px;
+      line-height: 50px;
+    }
+
+    &:hover {
+      transform: rotate(1turn);
     }
   }
+}
 
-  .controler {
-    width: 100%;
+.controler {
+  width: 100%;
 
-    @include flex(row, space-around, center);
+  @include flex(row, space-around, center);
 
-    button {
-      width: 30%;
-      height: 36px;
-      font-size: 16px;
-      color: var(--color-least);
-      background-color: var(--color-main);
-      border: 0;
-      border-radius: 5px;
-      outline: none;
-      cursor: pointer;
-    }
+  button {
+    width: 30%;
+    height: 36px;
+    font-size: 16px;
+    color: var(--color-least);
+    background-color: var(--color-main);
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
   }
 }
 </style>
@@ -75,7 +81,9 @@
     </div>
     <!-- 头像 -->
     <div class="avatar">
-      <img src="../../../assets/imgs/logo/avatar.jpg" alt="头像" />
+      <div class="word">
+        {{ user.info.user_name[user.info.user_name.length - 1] }}
+      </div>
     </div>
     <!-- 修改按钮 -->
     <div class="controler">

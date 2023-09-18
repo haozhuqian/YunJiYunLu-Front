@@ -5,16 +5,15 @@ import cache from '@/utils/cache';
 const showMessageBox = cache((title: string, timeout: number = 3000) => {
   // 组件挂载的容器
   const container = document.createElement('div');
-  const timeId: number;
-  const close = () => {
+  const timeId: number = window.setTimeout(close, timeout);
+  function close() {
     render(null, container);
     container.remove();
     showMessageBox.uncacheFn();
     clearTimeout(timeId); //提前清除定时器
-  };
+  }
   // 渲染为真实dom
   render(h(message, { title, onClose: close }), container);
   document.body.appendChild(container.firstElementChild!);
-  timeId = window.setTimeout(close, timeout);
 });
 export default showMessageBox.cacheFn;
