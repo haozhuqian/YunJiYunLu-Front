@@ -1,8 +1,8 @@
 <style scoped lang="scss">
 .app {
+  overflow: hidden;
   width: 100vw;
   height: 100vh;
-  background-color: var(--color-primary);
 }
 </style>
 

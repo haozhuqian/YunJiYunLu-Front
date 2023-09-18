@@ -2,25 +2,95 @@
 @import '@/style/tool';
 
 .all {
-  width: 100%;
   height: 100%;
 
-  @include flex();
+  @include flex(column, center, center);
 
   .table {
-    width: 100%;
+    overflow: hidden;
+    width: 90%;
     height: 80%;
+    border-radius: 6px;
+    outline: 2px solid var(--color-showy);
 
     @include flex();
 
     .column {
-      flex: 1 1 0px;
+      flex: 1 0 0px;
 
       @include flex(column);
     }
 
     .firstColumn {
-      flex: 0 0 150px;
+      flex: 0 1 150px;
+    }
+  }
+
+  .controller {
+    overflow: hidden;
+    margin-top: 24px;
+    width: 90%;
+    height: 26px;
+
+    @include flex(row, space-between);
+
+    .legengs {
+      @include flex(row, space-around, center);
+
+      .unsign,
+      .signIn,
+      .leave,
+      .signOut {
+        width: 100px;
+        height: 100%;
+        border-radius: 6px;
+        font-weight: 900;
+
+        @include flex(row, center, center);
+      }
+
+      .unsign {
+        background-color: var(--color-main);
+      }
+
+      .signIn {
+        background-color: var(--color-minor);
+      }
+
+      .leave {
+        color: var(--color-main);
+        background-color: var(--color-showy);
+      }
+
+      .signOut {
+        color: var(--color-main);
+        background-color: var(--color-least);
+      }
+    }
+
+    .btns {
+      .signIn,
+      .signOut,
+      .leave {
+        width: 100px;
+        border: none;
+        border: 2px solid var(--color-least);
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 900;
+      }
+
+      .signIn {
+        background-color: var(--color-main);
+      }
+
+      .leave {
+        background-color: var(--color-main);
+      }
+
+      .signOut {
+        background-color: var(--color-minor);
+      }
     }
   }
 }
@@ -46,13 +116,25 @@
     </div>
     <!-- 用户状态操作事件组 -->
     <div class="controller">
-      <button
-        @click="eventControllers[key]"
-        v-for="(event, key) in eventName"
-        :key="event"
-      >
-        {{ event }}
-      </button>
+      <div class="legengs">
+        <div
+          v-for="(state, key) in statusName"
+          :key="state"
+          :class="status[key]"
+        >
+          {{ state }}
+        </div>
+      </div>
+      <div class="btns">
+        <button
+          @click="eventControllers[key]"
+          v-for="(event, key) in eventName"
+          :key="event"
+          :class="eventType[key]"
+        >
+          {{ event }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -64,9 +146,11 @@ import content from './_com/content.vue';
 import { table } from './_hooks/getTable';
 import {
   checkedList, //导入选中用户列表 对象
+  statusName, //导入用户状态名称 对象
   eventName, //导入用户状态操作名称 对象
   eventControllers, //导入用户状态操作事件 对象
 } from './_hooks/userStatusControl';
+import { eventType, status } from './_type/status';
 const openColumn = ref(0); //当前打开的列
 const userTable = computed(() =>
   openColumn.value !== 0

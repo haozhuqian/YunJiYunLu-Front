@@ -10,8 +10,7 @@
   @include flex(column, center, center);
 
   .message-box {
-    width: clamp(100px, 15%, 600px);
-    height: clamp(40px, 5%, 200px);
+    padding: 6px 20px;
     background-color: var(--color-primary);
     border-radius: 6px;
 
@@ -26,14 +25,17 @@
 </style>
 
 <template>
-  <div class="message-bg" @click.stop>
+  <div class="message-bg" @click.stop="emits('close')">
     <div class="message-box">
-      <div class="title">{{ props.title }}</div>
+      <div class="title" v-html="props.title"></div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+const emits = defineEmits<{
+  (e: 'close'): void;
+}>();
 const props = withDefaults(
   defineProps<{
     title: string;

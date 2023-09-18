@@ -1,5 +1,6 @@
 //这个hook用于对用户状态管理的封装，导出了
 //选中用户列表 对象(checkedList)
+//用户状态名称 对象(statusName)
 //用户状态操作名称 对象(eventName)
 //用户状态操作事件 对象(eventControllers)
 
@@ -11,6 +12,7 @@ import {
   eventType,
   contentType,
 } from '../_type/status';
+import message from '@/components/message/index';
 import getEnum from '@/utils/getEnum';
 
 //不同用户状态名
@@ -112,8 +114,8 @@ getEnum<eventType>(eventType).forEach((event) => {
     //如果此时没有错误提示词了，直接返回不做提示
     if (unqualified.length === 0) return;
     //否则进行错误提示
-    alert(unqualified.join(', '));
+    message(unqualified.join('<br/>'));
   };
 });
 
-export { checkedList, eventName, eventControllers };
+export { checkedList, statusName, eventName, eventControllers };

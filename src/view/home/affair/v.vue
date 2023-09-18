@@ -29,6 +29,14 @@
         background-color: var(--color-minor);
       }
     }
+
+    .searchBtn {
+      min-width: 40px;
+    }
+
+    .exportBtn {
+      min-width: 90px;
+    }
   }
 }
 </style>
@@ -36,7 +44,9 @@
 <template>
   <div class="person">
     <div class="searchBar">
-      <button @click="console.log(searchCondition)">搜索</button>
+      <button class="searchBtn" @click="console.log(searchCondition)">
+        搜索
+      </button>
       <component
         v-for="props in chouseInfo"
         :is="'option' in chouse[props] ? selectInput : textInput"
@@ -45,6 +55,7 @@
         @update="(newValue) => (searchCondition[props] = newValue)"
       />
       <button
+        class="exportBtn"
         @click="getExcel('搜索结果人员名单', userInfo, infoName, searchReasult)"
       >
         导出查询结果

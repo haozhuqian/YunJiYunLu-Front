@@ -3,13 +3,15 @@
 
 .contentHead,
 .content {
-  padding: 2px;
   width: 100%;
-  height: 100%;
-  border: 1px solid var(--color-main);
+  height: 20%;
+  outline: 1px solid var(--color-showy);
 }
 
 .contentHead {
+  font-size: 24px;
+  text-align: center;
+
   @include flex(row, center, center);
 }
 
@@ -19,10 +21,12 @@
 
 .content {
   overflow-y: scroll;
+  padding: 2px;
+  height: 0;
   font-size: 8px;
+  text-align: center;
   flex: auto;
   font-weight: 100;
-  text-align: center;
 
   &::-webkit-scrollbar {
     width: 0;
@@ -30,10 +34,11 @@
 
   .user {
     display: inline-block;
-    margin: 6px 2px;
-    width: 20%;
+    margin: 4px 2px;
+    width: 30%;
     min-width: 50px;
-    max-width: 100px;
+    max-width: 150px;
+    font-weight: 900;
     height: 26px;
     text-align: center;
     border-radius: 4px;
