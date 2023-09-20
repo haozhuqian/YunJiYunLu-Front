@@ -102,7 +102,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
-        '#': fileURLToPath(new URL('./types', import.meta.url)),
+        '#': fileURLToPath(new URL('./src/types', import.meta.url)),
       },
     },
   };

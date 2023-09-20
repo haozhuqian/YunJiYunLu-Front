@@ -88,8 +88,12 @@
     </div>
     <!-- 修改按钮 -->
     <div class="controler">
-      <button @click="changeInfo">{{ isChangeing ? '确定' : '修改' }}</button>
-      <button @click="unChangeInfo" v-if="isChangeing">取消</button>
+      <button @click="changeInfo">
+        {{ isChangeing ? '确定修改' : '修改信息' }}
+      </button>
+      <button @click="unChangeInfo">
+        {{ isChangeing ? '取消修改' : '修改密码' }}
+      </button>
     </div>
   </div>
 </template>
@@ -98,8 +102,10 @@
 import { userInfo } from '@/types/userInfo';
 import { useUserStore } from '@/store/user';
 import infoList from './_store/infoList';
+import Pwdconfig from './_store/PwdConfig';
 import selectInput from './_com/selectInput.vue';
 import textInput from './_com/textInput.vue';
+import changePwd from './_com/changePwd';
 
 const user = useUserStore();
 const isChangeing = ref(false);
@@ -132,9 +138,22 @@ const changeInfo = () => {
 };
 //取消修改
 const unChangeInfo = () => {
-  isChangeing.value = !isChangeing.value;
-  user.$patch({
-    info: oldInfo,
-  });
+  if (isChangeing.value) {
+    isChangeing.value = !isChangeing.value;
+    user.$patch({
+      info: oldInfo,
+    });
+  } else {
+    const reasult = changePwd({ title: '修改密码', verifys: Pwdconfig });
+    //弹出修改密码框，确认或取消修改
+    reasult?.then(
+      (value) => {
+        console.log(value);
+      },
+      (value) => {
+        console.log(value);
+      },
+    );
+  }
 };
 </script>

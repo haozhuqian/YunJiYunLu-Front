@@ -5,7 +5,8 @@
   @include flex(column, center, center);
 
   margin: auto;
-  width: calc(350px + 5%);
+  width: 80%;
+  max-width: calc(350px + 5%);
   height: 100%;
 
   .column {
@@ -59,69 +60,28 @@
         v-bind="prop"
         @update="
           (reasult) => {
-            account[realName[key]] = reasult;
+            account[prop.realName[key]] = reasult;
           }
         "
       ></text-input>
 
       <button class="login-btn" @click="loginAction">确认</button>
-      <button class="login-btn" @click="goHome(role.visitor)">游客</button>
       <button class="login-btn" @click="goHome(role.Normal)">学员</button>
       <button class="login-btn" @click="goHome(role.Admin)">管理</button>
       <button class="login-btn" @click="goHome(role.Dapartment)">部门</button>
       <button class="login-btn" @click="goHome(role.Total)">总号</button>
-      <button class="login-btn" @click="test">测试</button>
+      <!-- <button class="login-btn" @click="test">测试</button> -->
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-// import http from '@/service/http';
-import showMessageBox from '@/components/prompt';
 import { role } from '@/types/route';
-import { textInputPropsType } from './_type/comProps';
 import changeTheme from '@/components/changeTheme.vue';
 import { useUserStore } from '@/store/user';
-import textInput from './_com/textInput.vue';
-const test = () => {
-  showMessageBox({
-    title: '随便什么文本',
-    verifys: [
-      (value: string) =>
-        value
-          ? { reasult: true, value }
-          : { reasult: false, value: '不能为空' },
-    ],
-  })
-    ?.then((value) => {
-      console.log(value);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+import textInput from '@/components/textInput/textInput.vue';
+import loginInputConfig from './_store/loginConfig';
 
-const loginInputConfig: textInputPropsType[] = [
-  {
-    name: '账号',
-    verifys: [
-      (value: string) =>
-        value
-          ? { reasult: true, value }
-          : { reasult: false, value: '账号不能为空' },
-    ],
-  },
-  {
-    name: '密码',
-    verifys: [
-      (value: string) =>
-        value
-          ? { reasult: true, value }
-          : { reasult: false, value: '密码不能为空' },
-    ],
-  },
-];
-const realName = ['id', 'password'];
 const router = useRouter();
 const goHome = (goRole: role) => {
   const user = useUserStore();
@@ -134,9 +94,9 @@ const goHome = (goRole: role) => {
 
 const account: { [key: string]: { reasult: boolean; value: string } } = {};
 const loginAction = () => {
-  for (let reasult of realName) {
-    if (!account[reasult].reasult) {
-      console.log(account[reasult].value);
+  for (let reasult of loginInputConfig) {
+    if (!account[reasult.realName].reasult) {
+      console.log(account[reasult.realName].value);
       return;
     }
   }

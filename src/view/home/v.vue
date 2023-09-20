@@ -172,4 +172,3 @@ const goOut = () => {
   router.push({ name: 'start' });
 };
 </script>
-@/hooks/useSize

@@ -11,7 +11,7 @@
 
   .message-box {
     padding: 6px 20px;
-    background-color: var(--color-primary);
+    background-color: var(--color-minor);
     border-radius: 6px;
 
     @include flex(column, center, center);

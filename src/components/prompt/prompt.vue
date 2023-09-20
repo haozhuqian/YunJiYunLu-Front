@@ -2,7 +2,7 @@
 @import '@/style/tool';
 
 .message-bg {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 100;
   background-color: var(--color-purdah);
@@ -12,7 +12,7 @@
   .message-box {
     width: clamp(300px, 45%, 600px);
     height: clamp(200px, 25%, 300px);
-    background-color: var(--color-primary);
+    background-color: var(--color-minor);
     border-radius: 6px;
 
     @include flex(column, space-around, center);

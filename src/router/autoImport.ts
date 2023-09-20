@@ -80,7 +80,8 @@ const OToR = (obj: IModule, routes: Array<RouteRecordRaw>, name = '') => {
   });
 };
 OToR(modules, routes);
-// 取出路由数组中根路由的children选项，作为最终的结果(因为原路由数组中的根路由是没有页面组件的，只有一个view子路由)
+
+// 取出路由数组中根路由的children选项，作为最终的结果(因为此时路由数组中的根路由是没有页面组件的，只有一个view子路由)
 routes = routes[0].children as RouteRecordRaw[];
 
 export default routes;

@@ -4,6 +4,7 @@
 //状态切换事件 (event)
 import { status, times, contentType, eventMeun } from '../_type/status';
 import { row, column, table } from './getTable';
+import prompt from '@/components/prompt';
 
 //不同时间段的名字
 const timeWord: { [key in times]: string } = {
@@ -39,11 +40,23 @@ const menuController: eventMeun = {
       '请假',
       () => {
         //获取请假原因
-        console.log(prompt('请输入请假原因'));
-        //将选中的日程状态切换为请假
-        selecteds[0].value.state = status.leave;
-        //刷新选项列表
-        event.showMenu();
+        prompt({
+          title: '请输入请假原因',
+          verifys: [
+            (value) =>
+              value
+                ? { value, reasult: true }
+                : { value: '不能为空', reasult: false },
+          ],
+        })?.then(
+          () => {
+            //将选中的日程状态切换为请假
+            selecteds[0].value.state = status.leave;
+            //刷新选项列表
+            event.showMenu();
+          },
+          () => {},
+        );
       },
     ],
     [
