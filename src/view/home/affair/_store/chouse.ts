@@ -33,9 +33,9 @@ export default {
     verifys: [
       (value: string) => {
         const num = Number(value);
-        return num || (num > 0 && num <= 20)
+        return num || (num > 0 && num <= 18)
           ? { reasult: true, value: value }
-          : { reasult: false, value: '周数应当是1~20之间的整数' };
+          : { reasult: false, value: '周数应当是1~18之间的整数' };
       },
     ],
   },

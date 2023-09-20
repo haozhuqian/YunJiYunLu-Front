@@ -54,6 +54,7 @@
         v-bind="chouse[props]"
         @update="(newValue) => (searchCondition[props] = newValue)"
       />
+      <dateInput></dateInput>
       <button
         class="exportBtn"
         @click="getExcel('搜索结果人员名单', userInfo, infoName, searchReasult)"
@@ -68,6 +69,7 @@
 
 <script lang="ts" setup>
 import chouse from './_store/chouse';
+import dateInput from './_com/dateInput.vue';
 import { chouseInfo } from './_store/infoName';
 import userInfoTable from './_com/userInfoTable.vue';
 import searchReasult from './_store/searchReasult';

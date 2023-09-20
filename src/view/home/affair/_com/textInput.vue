@@ -92,12 +92,13 @@ const props = defineProps<textInputPropsType>();
 const emit = defineEmits<{
   (e: 'update', value: string): void;
 }>();
-const value = ref('');
+const value = ref(props.value || '');
 const reason = ref('');
 const verifyValue = () => {
   const reasult = verifyString(value.value, props.verifys);
   if (reasult.reasult) {
     reason.value = '';
+    value.value = reasult.value;
     emit('update', reasult.value);
   } else {
     reason.value = reasult.value;
