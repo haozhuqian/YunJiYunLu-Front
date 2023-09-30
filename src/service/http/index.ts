@@ -1,7 +1,7 @@
 import Request from './instance/index';
 
 const defaultRequest = new Request({
-  baseURL: 'https:/api',
+  baseURL: '/api',
   timeout: 5000,
 });
 defaultRequest.instance.interceptors.request.use((config) => {

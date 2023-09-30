@@ -70,7 +70,7 @@
       <button class="login-btn" @click="goHome(role.Admin)">管理</button>
       <button class="login-btn" @click="goHome(role.Dapartment)">部门</button>
       <button class="login-btn" @click="goHome(role.Total)">总号</button>
-      <!-- <button class="login-btn" @click="test">测试</button> -->
+      <button class="login-btn" @click="test">测试</button>
     </div>
   </div>
 </template>
@@ -81,7 +81,13 @@ import changeTheme from '@/components/changeTheme.vue';
 import { useUserStore } from '@/store/user';
 import textInput from '@/components/textInput/textInput.vue';
 import loginInputConfig from './_store/loginConfig';
+import { login } from '@/service/http/modules/login';
 
+const test = () => {
+  login({ password: 'ydsyyyds' }).then((res) => {
+    console.log(res);
+  });
+};
 const router = useRouter();
 const goHome = (goRole: role) => {
   const user = useUserStore();

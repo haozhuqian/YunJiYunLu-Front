@@ -27,11 +27,11 @@ export default class Request {
   request<T = any>(config: AxiosRequestConfig) {
     //添加取消请求控制
     const source = axios.CancelToken.source();
-    return new RePromise<T>(
-      () => {
+    return new RePromise(
+      (resolve) => {
         //添加取消请求控制
         config.cancelToken = source.token;
-        this.instance.request<T>(config);
+        resolve(this.instance.request<T>(config));
       },
       (reason) => source.cancel(reason),
     );
