@@ -18,8 +18,7 @@ export const getAffair = (data: any) =>
 export const getCurrentState = () =>
   request.get({ url: '/student/getCurrentState' });
 //获得学期列表
-export const getSemesters = (data: any) =>
-  request.get({ url: '/student/getSemesters' }, data);
+export const getSemesters = () => request.get({ url: '/student/getSemesters' });
 //获取用户本周内指定时间的研学状态
 export const getStudyState = () =>
   request.get({ url: '/student/getStudyState' });

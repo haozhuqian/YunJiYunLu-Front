@@ -92,7 +92,7 @@
       :y="user.value.y"
       :z="user.value.z"
     >
-      {{ user.value.name }}{{ user.value.status }}
+      {{ user.value.name }}
     </div>
   </div>
 </template>

@@ -154,10 +154,10 @@ import { eventType, status } from './_type/status';
 const openColumn = ref(0); //当前打开的列
 const userTable = computed(() =>
   openColumn.value !== 0
-    ? table.filter(
+    ? table.value.filter(
         (_column, index) => index === 0 || index === openColumn.value,
       )
-    : table,
+    : table.value,
 );
 //获取对应格式的表格数据
 //选中用户的操作
@@ -180,14 +180,15 @@ const check = (e: MouseEvent) => {
   const y = Number(Element.getAttribute('y'));
   const z = Number(Element.getAttribute('z'));
   //将对应的响应式用户对象加入对应选中用户列表
-  table[x][y].content[z].value.isCheck = !table[x][y].content[z].value.isCheck;
-  if (table[x][y].content[z].value.isCheck) {
-    checkedList[table[x][y].content[z].value.status].add(
-      table[x][y].content[z],
+  table.value[x][y].content[z].value.isCheck =
+    !table.value[x][y].content[z].value.isCheck;
+  if (table.value[x][y].content[z].value.isCheck) {
+    checkedList[table.value[x][y].content[z].value.status].add(
+      table.value[x][y].content[z],
     );
   } else {
-    checkedList[table[x][y].content[z].value.status].delete(
-      table[x][y].content[z],
+    checkedList[table.value[x][y].content[z].value.status].delete(
+      table.value[x][y].content[z],
     );
   }
 };

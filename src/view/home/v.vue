@@ -145,6 +145,7 @@ import { useUserStore } from '@/store/user';
 import routes from '@/router/autoImport';
 import { RouteRecordRaw } from 'vue-router';
 import useSize from '@/hooks/useSize';
+import { logout } from '@/service/http/modules/user';
 
 const nowTime = useNowTime();
 //根据有访问权限的路由加载菜单，
@@ -170,5 +171,8 @@ const goOut = () => {
   const user = useUserStore();
   user.$reset();
   router.push({ name: 'start' });
+  logout().then((res) => {
+    console.log(res);
+  });
 };
 </script>

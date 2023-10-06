@@ -16,7 +16,7 @@ export default {
       case role.visitor:
         redirect = 'start';
         break;
-      case role.Dapartment:
+      case role.Department:
         redirect = 'person';
         break;
       case role.Total:

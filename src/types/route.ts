@@ -32,7 +32,7 @@ declare module 'vue-router' {
 // 权限枚举量
 export enum role {
   Total = 1 << 0,
-  Dapartment = 1 << 1,
+  Department = 1 << 1,
   Admin = 1 << 2,
   Normal = 1 << 3,
   visitor = 1 << 4,

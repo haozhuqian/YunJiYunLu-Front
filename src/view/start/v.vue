@@ -65,11 +65,7 @@
         "
       ></text-input>
 
-      <button class="login-btn" @click="loginAction">确认</button>
-      <button class="login-btn" @click="goHome(role.Normal)">学员</button>
-      <button class="login-btn" @click="goHome(role.Admin)">管理</button>
-      <button class="login-btn" @click="goHome(role.Dapartment)">部门</button>
-      <button class="login-btn" @click="goHome(role.Total)">总号</button>
+      <button class="login-btn" @click="loginAction">登录</button>
       <button class="login-btn" @click="test">测试</button>
     </div>
   </div>
@@ -81,13 +77,12 @@ import changeTheme from '@/components/changeTheme.vue';
 import { useUserStore } from '@/store/user';
 import textInput from '@/components/textInput/textInput.vue';
 import loginInputConfig from './_store/loginConfig';
-import { login } from '@/service/http/modules/login';
+import { login } from '@/service/http/modules/user';
 
-const test = () => {
-  login({ password: 'ydsyyyds' }).then((res) => {
-    console.log(res);
-  });
-};
+const test = () => {};
+
+test();
+
 const router = useRouter();
 const goHome = (goRole: role) => {
   const user = useUserStore();
@@ -100,12 +95,43 @@ const goHome = (goRole: role) => {
 
 const account: { [key: string]: { reasult: boolean; value: string } } = {};
 const loginAction = () => {
-  for (let reasult of loginInputConfig) {
-    if (!account[reasult.realName].reasult) {
-      console.log(account[reasult.realName].value);
-      return;
-    }
-  }
+  console.log('account.i.value', account.i.value);
+  console.log('account.a.value', account.a.value);
   //在这里发送请求
+  login({
+    // userIdOrPhone: account.i.value,
+    // password: account.a.value,
+    // userIdOrPhone: '2022006330',
+    // password: 'yd2022006330',
+    userIdOrPhone: 'yundingshuyuan',
+    password: 'ydsyyyds',
+  }).then((res) => {
+    console.log(res.data, res.data.data.token);
+    if (res.data.code == 4005) {
+      alert(res.data.message);
+    }
+    const userIdentify = res.data.data.userDTO.userIdentity;
+    const token = res.data.data.token;
+    localStorage.setItem('token', token);
+    navigateByUserIdentify(userIdentify);
+  });
 };
+
+const routeStrategies = {
+  0: () => goHome(role.Total),
+  1: () => goHome(role.Department),
+  2: () => goHome(role.Admin),
+  3: () => goHome(role.Normal),
+};
+
+function navigateByUserIdentify(userIdentify: number) {
+  const routeStrategy = routeStrategies[userIdentify];
+  if (routeStrategy) {
+    // 如果找到了匹配的策略，则执行它并传递 role 参数
+    return routeStrategy(userIdentify);
+  } else {
+    // 如果没有匹配的策略，可以选择默认的跳转或者抛出错误
+    throw new Error('Unsupported userIdentify');
+  }
+}
 </script>

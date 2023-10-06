@@ -14,8 +14,7 @@ export const importUsers = (data: any) =>
 //登录
 export const login = (data: any) => request.post({ url: '/user/login' }, data);
 //登出
-export const logout = (data: any) =>
-  request.post({ url: '/user/logout' }, data);
+export const logout = () => request.post({ url: '/user/logout' });
 //注册
 export const register = (data: any) =>
   request.post({ url: '/user/register' }, data);

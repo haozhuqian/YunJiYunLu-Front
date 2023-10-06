@@ -26,5 +26,5 @@ export const studySignReturn = (data: any) =>
 export const tableGetToday = () =>
   request.get({ url: '/arrange/todayStudy/group' });
 //按照小组获取本周某日排课信息
-export const tableGetTomorrow = () =>
-  request.get({ url: '/arrange/> whichDayStudy/group' });
+export const tableGetSomeday = (dayNum: number, groupId: number) =>
+  request.get({ url: '/arrange/whichDayStudy/group' }, { dayNum, groupId });
