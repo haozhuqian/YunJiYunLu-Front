@@ -14,6 +14,11 @@ import {
 } from '../_type/status';
 import message from '@/components/message/index';
 import getEnum from '@/utils/getEnum';
+import {
+  studySignIn,
+  studySignLeave,
+  studySignOut,
+} from '@/service/http/modules/arrange';
 
 //不同用户状态名
 const statusName: { [name in status]: string } = {
@@ -36,9 +41,54 @@ const rightMap: {
     other?: (checked: Ref<contentType>, from: status) => void; //可以额外调用的函数（比如向后端发起请求）
   };
 } = {
-  [eventType.signIn]: { from: status.unsign, to: status.signIn },
-  [eventType.leave]: { from: status.unsign, to: status.leave },
-  [eventType.signOut]: { from: status.signIn, to: status.signOut },
+  [eventType.signIn]: {
+    from: status.unsign,
+    to: status.signIn,
+    other: (checked) => {
+      console.log(checked.value);
+      studySignIn([
+        {
+          classNum: checked.value.classNum,
+          dayNum: new Date().getDay(),
+          studentId: checked.value.studentId,
+        },
+      ]).then((res) => {
+        console.log(res);
+      });
+    },
+  },
+  [eventType.leave]: {
+    from: status.unsign,
+    to: status.leave,
+    other: (checked) => {
+      console.log(checked.value);
+      studySignLeave([
+        {
+          classNum: checked.value.classNum,
+          dayNum: new Date().getDay(),
+          studentId: checked.value.studentId,
+        },
+      ]).then((res) => {
+        console.log(res);
+      });
+    },
+  },
+  [eventType.signOut]: {
+    from: status.signIn,
+    to: status.signOut,
+    other: (checked) => {
+      console.log(checked.value);
+      studySignOut([
+        {
+          classNum: checked.value.classNum,
+          dayNum: new Date().getDay(),
+          studentId: checked.value.studentId,
+        },
+      ]).then((res) => {
+        console.log(res);
+      });
+    },
+  },
 };
 
 //选中的用户数组，根据选中的用户不同，插入不同数组

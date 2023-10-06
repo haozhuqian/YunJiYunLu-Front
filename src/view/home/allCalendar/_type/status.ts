@@ -19,6 +19,8 @@ export type contentType = {
   isCheck: boolean;
   name: string;
   status: status;
+  studentId?: number;
+  classNum?: number;
 };
 
 // 控制参数 的类型

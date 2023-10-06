@@ -15,8 +15,8 @@ export const applyForEarlyLeave = (data: any) =>
 export const getAffair = (data: any) =>
   request.post({ url: '/student/getAffair' }, data);
 //获取用户当前状态
-export const getCurrentState = () =>
-  request.get({ url: '/student/getCurrentState' });
+export const getCurrentState = (classNum: number, studentId: number) =>
+  request.get({ url: '/student/getCurrentState' }, { classNum, studentId });
 //获得学期列表
 export const getSemesters = () => request.get({ url: '/student/getSemesters' });
 //获取用户本周内指定时间的研学状态

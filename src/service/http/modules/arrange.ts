@@ -23,8 +23,8 @@ export const studySignOut = (data: any) =>
 export const studySignReturn = (data: any) =>
   request.post({ url: '/arrange/sign/return' }, data);
 //按照小组获取今日排课信息
-export const tableGetToday = () =>
-  request.get({ url: '/arrange/todayStudy/group' });
+export const tableGetToday = (groupId: number) =>
+  request.get({ url: '/arrange/todayStudy/group' }, { groupId });
 //按照小组获取本周某日排课信息
 export const tableGetSomeday = (dayNum: number, groupId: number) =>
   request.get({ url: '/arrange/whichDayStudy/group' }, { dayNum, groupId });
