@@ -27,8 +27,7 @@ export const resetPwd = (data: any) =>
 export const selectUserInfo = (data: any) =>
   request.get({ url: '/student/selectUserInfo' }, data);
 //展示用户个人信息
-export const showMyself = (data: any) =>
-  request.post({ url: '/user/showMyself' }, data);
+export const showMyself = () => request.post({ url: '/user/showMyself' });
 //修改密码
 export const updatePwd = (data: any) =>
   request.post({ url: '/user/updatePwd' }, data);

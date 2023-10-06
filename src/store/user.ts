@@ -14,7 +14,7 @@ export const useUserStore = defineStore('user', {
       user_group: '全栈',
       user_gender: '男',
       user_major: '软件工程',
-      user_id: '2021005381',
+      user_id: '123456',
       user_academy: '软件学院',
       user_introduction: 'I am good-money!',
       study_num: '0',

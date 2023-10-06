@@ -33,6 +33,7 @@
 import jsQR from 'jsqr';
 import { QRCode } from 'jsqr';
 import confirm from '@/components/confirm/index';
+import { scan, show } from '@/service/http/modules/scan';
 
 type Point = { x: number; y: number };
 type Area = {
@@ -158,6 +159,15 @@ const tick = (video: HTMLVideoElement, canvas: CanvasRenderingContext2D) => {
     if (code) {
       // 触发识别事件，将识别到的内容传递
       emits('identify', code.data);
+      let hour = Math.floor(new Date().getHours() / 2 - 3);
+      show().then((res: any) => {
+        const value = res.data.data.qrcode;
+        scan(hour, value).then((res) => {
+          console.log(value);
+          // 处理 API 响应
+          console.log(res.data);
+        });
+      });
       // 如果自定义了后续操作就执行
       if (props.afteridentify) {
         props.afteridentify(canvas, code);

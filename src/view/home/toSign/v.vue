@@ -52,11 +52,13 @@
 
 <script lang="ts" setup>
 import QrcodeVue, { Level, RenderAs } from 'qrcode.vue';
-
-const value = ref('qrcode');
+import { show } from '@/service/http/modules/scan';
+const value = ref('6d038c83d2a949ae8d29a915159053c5');
 const timeId = setInterval(() => {
-  value.value = new Date().getTime().toString();
-}, 1000);
+  show().then((res) => {
+    value.value = res.data.data.qrcode;
+  });
+}, 1700);
 const showQr = ref(true);
 const level = ref<Level>('M');
 const renderAs = ref<RenderAs>('svg');

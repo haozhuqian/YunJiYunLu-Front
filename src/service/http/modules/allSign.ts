@@ -7,7 +7,8 @@ export const settlement = () => request.get({ url: '/allSign/settlement' });
 //显示学生信息
 export const showInfo = () => request.get({ url: '/allSign/showInfo' });
 //根据组来返回学生信息
-export const showStudent = () => request.get({ url: '/allSign/showStudent' });
+export const showStudent = (groupId: number) =>
+  request.get({ url: '/allSign/showStudent' }, { groupId });
 //签到接口
 export const signIn = (data: any) =>
   request.post({ url: '/allSign/sign/in' }, data);

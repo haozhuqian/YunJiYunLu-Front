@@ -108,6 +108,7 @@ import textInput from './_com/textInput.vue';
 import changePwd from './_com/changePwd';
 
 const user = useUserStore();
+console.log(user);
 const isChangeing = ref(false);
 const props: any = {};
 for (const info of userInfo) {

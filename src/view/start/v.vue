@@ -99,12 +99,8 @@ const loginAction = () => {
   console.log('account.a.value', account.a.value);
   //在这里发送请求
   login({
-    // userIdOrPhone: account.i.value,
-    // password: account.a.value,
-    // userIdOrPhone: '2022006330',
-    // password: 'yd2022006330',
-    userIdOrPhone: 'yundingshuyuan',
-    password: 'ydsyyyds',
+    userIdOrPhone: account.i.value,
+    password: account.a.value,
   }).then((res) => {
     console.log(res.data, res.data.data.token);
     if (res.data.code == 4005) {
@@ -125,7 +121,7 @@ const routeStrategies = {
 };
 
 function navigateByUserIdentify(userIdentify: number) {
-  const routeStrategy = routeStrategies[userIdentify];
+  const routeStrategy = (routeStrategies as any)[userIdentify];
   if (routeStrategy) {
     // 如果找到了匹配的策略，则执行它并传递 role 参数
     return routeStrategy(userIdentify);

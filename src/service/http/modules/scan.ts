@@ -1,8 +1,7 @@
 import request from '@/service/http';
 
 //扫码
-export const scan = (data: any) =>
-  request.post({ url: '/scan/scanQRCode' }, data);
+export const scan = (classNum: number, qrcode: string) =>
+  request.post({ url: '/scan/scanQRCode' }, { classNum, qrcode });
 //总账号展示二维码
-export const show = (data: any) =>
-  request.post({ url: '/scan/showQRCode' }, data);
+export const show = () => request.post({ url: '/scan/showQRCode' });
