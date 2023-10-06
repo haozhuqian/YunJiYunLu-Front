@@ -1,9 +1,9 @@
 //标识用户的状态
 export enum status {
-  unsign,
-  signIn,
-  leave,
-  signOut,
+  unsign = 0,
+  leave = 1,
+  signIn = 2,
+  signOut = 3,
 }
 //标识事件的种类
 export enum eventType {

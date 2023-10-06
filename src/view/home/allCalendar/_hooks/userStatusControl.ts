@@ -38,7 +38,7 @@ const rightMap: {
   [key in eventType]: {
     from: status; //可以操作的用户的状态
     to: status; //应当切换到什么状态
-    other?: (checked: Ref<contentType>, from: status) => void; //可以额外调用的函数（比如向后端发起请求）
+    other?: (checked: Ref<contentType>) => void; //可以额外调用的函数（比如向后端发起请求）
   };
 } = {
   [eventType.signIn]: {
