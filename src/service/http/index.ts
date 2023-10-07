@@ -2,7 +2,7 @@ import Request from './instance/index';
 
 const defaultRequest = new Request({
   baseURL: '/api',
-  timeout: 5000,
+  timeout: 10000,
 });
 defaultRequest.instance.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');

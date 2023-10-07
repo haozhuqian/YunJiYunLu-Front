@@ -1,9 +1,19 @@
 //日程状态
 export enum status {
   outside, //表示该日程为表头
-  leave, //表示该日程为已请假
+  study, //表示该日程为已请假
   nothing, //表示该日程无安排
-  study, //表示该日程为研学
+  leave, //表示该日程为研学
+}
+//日期映射
+export enum weekStatus {
+  'firstDay' = 1,
+  'secondDay',
+  'thirdDay',
+  'fourthDay',
+  'fifthDay',
+  'sixthDay',
+  'seventhDay',
 }
 //时间状态
 export enum times {
