@@ -38,7 +38,7 @@ for (let i = 0; i < width; i++) {
   for (let j = 1; j < heigh; j++) {
     table.value[i][j] = { name: '', content: [] };
     //发送请求获取小组排课情况
-    tableGetSomeday(new Date().getDay() - 1, i).then((res) => {
+    tableGetSomeday(5, i).then((res) => {
       // console.log(`groupId:${i}`, res);
       const studentInfoDTOList = res.data.data[j - 1].studentInfoDTOList;
       for (let k = 0; k < studentInfoDTOList.length; k++) {
